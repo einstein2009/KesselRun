@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform topRightTransform;
     public Transform topTransform;
 
+    public AudioSource movementSound;
+
+
     private Vector3 moveDirection = Vector3.zero;
     //private CharacterController controller;
     
@@ -30,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
+
+  
 
     void Awake()
     {
@@ -195,18 +200,22 @@ public class PlayerMovement : MonoBehaviour
             case -1:
                 targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
                 targetQuaternion = leftTransform.rotation;
+                PlayMovementSound();
                 break;
             case 0:
                 targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
                 targetQuaternion = middleTransform.rotation;
+                PlayMovementSound();
                 break;
             case 1:
                 targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
                 targetQuaternion = rightTransform.rotation;
+                PlayMovementSound();
                 break;
             case 2:
                 targetVector3 = new Vector3(topRightTransform.position.x, topRightTransform.position.y, transform.position.z);
                 targetQuaternion = topRightTransform.rotation;
+                PlayMovementSound();
                 break;
             default:
                 break;
@@ -229,18 +238,22 @@ public class PlayerMovement : MonoBehaviour
             case -2:
                 targetVector3 = new Vector3(topLeftTransform.position.x, topLeftTransform.position.y, transform.position.z);
                 targetQuaternion = topLeftTransform.rotation;
+                PlayMovementSound();
                 break;
             case -1:
                 targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
                 targetQuaternion = leftTransform.rotation;
+                PlayMovementSound();
                 break;
             case 0:
                 targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
                 targetQuaternion = middleTransform.rotation;
+                PlayMovementSound();
                 break;
             case 1:
                 targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
                 targetQuaternion = rightTransform.rotation;
+                PlayMovementSound();
                 break;
             default:
                 break;
@@ -264,6 +277,12 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.GetComponent<EndlessPipes>().MoveToFront();
         }
 
+    }
+
+
+    public void PlayMovementSound()
+    {
+        movementSound.Play();
     }
 
 }
