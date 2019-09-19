@@ -19,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform topRightTransform;
     public Transform topTransform;
 
+    public AudioSource movementSound;
+
+
     private Vector3 moveDirection = Vector3.zero;
     //private CharacterController controller;
-    
+
     private bool movingRight = false;
     private bool movingLeft = false;
     private bool falling = false;
@@ -30,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
+
+
 
     void Awake()
     {
@@ -69,11 +74,14 @@ public class PlayerMovement : MonoBehaviour
                 currentLane = targetLane;
                 targetLane++;
                 Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
-            } else if(movingLeft){
+            }
+            else if (movingLeft)
+            {
                 currentLane = targetLane;
                 targetLane++;
                 Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
-            } else
+            }
+            else
             {
                 movingRight = true;
                 switch (currentLane)
@@ -112,7 +120,8 @@ public class PlayerMovement : MonoBehaviour
                 currentLane = targetLane;
                 targetLane--;
                 Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
-            } else
+            }
+            else
             {
                 movingLeft = true;
                 switch (currentLane)
@@ -136,11 +145,12 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
-        if(targetLane > 2 || targetLane < -2)
+        if (targetLane > 2 || targetLane < -2)
         {
             Fall();
             Invoke("Reset", 5);
-        } else
+        }
+        else
         {
             if (movingRight)
             {
@@ -151,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 MoveLeft();
             }
         }
-        
+
     }
 
     private void Fall()
@@ -195,18 +205,22 @@ public class PlayerMovement : MonoBehaviour
             case -1:
                 targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
                 targetQuaternion = leftTransform.rotation;
+                PlayMovementSound();
                 break;
             case 0:
                 targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
                 targetQuaternion = middleTransform.rotation;
+                PlayMovementSound();
                 break;
             case 1:
                 targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
                 targetQuaternion = rightTransform.rotation;
+                PlayMovementSound();
                 break;
             case 2:
                 targetVector3 = new Vector3(topRightTransform.position.x, topRightTransform.position.y, transform.position.z);
                 targetQuaternion = topRightTransform.rotation;
+                PlayMovementSound();
                 break;
             default:
                 break;
@@ -215,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
 
-        if(Vector3.Distance(transform.position, targetVector3) < 0.01)
+        if (Vector3.Distance(transform.position, targetVector3) < 0.01)
         {
             movingRight = false;
             currentLane = targetLane;
@@ -229,18 +243,22 @@ public class PlayerMovement : MonoBehaviour
             case -2:
                 targetVector3 = new Vector3(topLeftTransform.position.x, topLeftTransform.position.y, transform.position.z);
                 targetQuaternion = topLeftTransform.rotation;
+                PlayMovementSound();
                 break;
             case -1:
                 targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
                 targetQuaternion = leftTransform.rotation;
+                PlayMovementSound();
                 break;
             case 0:
                 targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
                 targetQuaternion = middleTransform.rotation;
+                PlayMovementSound();
                 break;
             case 1:
                 targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
                 targetQuaternion = rightTransform.rotation;
+                PlayMovementSound();
                 break;
             default:
                 break;
@@ -264,6 +282,12 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.GetComponent<EndlessPipes>().MoveToFront();
         }
 
+    }
+
+
+    public void PlayMovementSound()
+    {
+        movementSound.Play();
     }
 
 }
