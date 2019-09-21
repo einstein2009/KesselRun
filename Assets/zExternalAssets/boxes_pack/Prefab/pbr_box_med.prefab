@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 445624}
   - component: {fileID: 3364628}
   - component: {fileID: 2338610}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: box_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,10 +65,11 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -86,7 +87,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457534}
-  m_Layer: 11
+  - component: {fileID: 9536038}
+  m_Layer: 0
   m_Name: pbr_box_med
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +111,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &9536038
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154622}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3fe47bcef97348f4e8fbc0553a357aeb, type: 3}
+  m_Controller: {fileID: 9100000, guid: 755db8c220f0dab418ccd01dbdc3057d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &163350
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438418}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +172,7 @@ GameObject:
   - component: {fileID: 435096}
   - component: {fileID: 3377072}
   - component: {fileID: 2312536}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: box_cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,10 +226,11 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
