@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409359706007407636}
+  - component: {fileID: 870380795789625600}
   m_Layer: 0
   m_Name: Asteroid Type 1 Enemy
   m_TagString: Enemy
@@ -23,14 +24,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2664397914477520091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0.8660254, z: -0.000000021855694, w: -0.000000037855173}
+  m_LocalPosition: {x: -2.4, y: 2.6399999, z: 317.3321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7877099743686574080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870380795789625600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664397914477520091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22f149ead1567c4f9b814552b5492d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
 --- !u!1001 &7877099743686711936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: baedbbad82997f445a8cb4da210404e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: baedbbad82997f445a8cb4da210404e0, type: 3}
       propertyPath: m_LocalPosition.z

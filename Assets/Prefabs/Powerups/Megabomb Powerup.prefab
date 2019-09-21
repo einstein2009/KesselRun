@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813000148359598300}
+  - component: {fileID: 2351107393451365868}
   m_Layer: 0
   m_Name: Megabomb Powerup
   m_TagString: Powerup
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2351107393451365868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082590533902896425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22f149ead1567c4f9b814552b5492d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
 --- !u!1001 &667277020091114367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481728, guid: abe8f822a502c18428096d4e8300b775, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 481728, guid: abe8f822a502c18428096d4e8300b775, type: 3}
       propertyPath: m_LocalPosition.z

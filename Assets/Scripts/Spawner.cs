@@ -10,11 +10,13 @@ public class Spawner : MonoBehaviour
     //public float difficulty;
     public GameObject[] enemies;
     public GameObject[] obstacles;
+    public GameObject[] powerups;
 
     private GameObject nextSpawn;
     private GameObject enemySpawner;
     private int numOfEnemies;
     private int numOfObstacles;
+    private int numOfPowerups;
     private float spawnCountdown;
 
     void Start()
@@ -23,6 +25,7 @@ public class Spawner : MonoBehaviour
         enemySpawner = this.gameObject;
         numOfEnemies = enemies.Length;
         numOfObstacles = obstacles.Length;
+        numOfPowerups = powerups.Length;
     }
 
 
@@ -35,34 +38,44 @@ public class Spawner : MonoBehaviour
         if (spawnCountdown < 0)
         {
             //Get the next random enemy or obstacle: both type and asset are random.
-            nextSpawn = Instantiate(GetNextSpawn(enemies, obstacles));
+            nextSpawn = Instantiate(GetNextSpawn(enemies, obstacles, powerups));
             spawnCountdown = spawnRate;
         }
     }
 
-    private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles){
+    private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles, GameObject[] powerups){
 
         GameObject tempObject = GetLocAndRot();
+        DestroyByTime tempDestr = tempObject.AddComponent<DestroyByTime>() as DestroyByTime;
+        tempDestr.lifetime = 3;
 
         //Enemy = 0
         //Obstacle = 1
-        int enemyOrObstacle = Random.Range(0, 2);
+        int enemyOrObstacleOrPowerup = Random.Range(0, 3);
 
-        if (enemyOrObstacle == 0 && enemies.Length != 0)
+        if (enemyOrObstacleOrPowerup == 0 && enemies.Length != 0)
         {
             int randEnemy = Random.Range(0, numOfEnemies - 1);
             nextSpawn = enemies[randEnemy];
             nextSpawn.transform.localPosition = tempObject.transform.localPosition;
             nextSpawn.transform.localRotation = tempObject.transform.localRotation;
-            nextSpawn.transform.localScale = new Vector3(.2f, .2f, .2f);
+            nextSpawn.transform.localScale = new Vector3(1f, 1f, 1f);
         }
-        else if ((enemyOrObstacle == 1 && obstacles.Length != 0))
+        else if ((enemyOrObstacleOrPowerup == 1 && obstacles.Length != 0))
         {
             int randObstacle = Random.Range(0, numOfObstacles - 1);
             nextSpawn.transform.localPosition = tempObject.transform.localPosition;
             nextSpawn.transform.localRotation = tempObject.transform.localRotation;
             nextSpawn.transform.localScale = new Vector3(1,1,1);
             nextSpawn = obstacles[randObstacle];
+        }
+        else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
+        {
+            int randPowerup = Random.Range(0, numOfPowerups - 1);
+            nextSpawn.transform.localPosition = tempObject.transform.localPosition;
+            nextSpawn.transform.localRotation = tempObject.transform.localRotation;
+            nextSpawn.transform.localScale = new Vector3(1, 1, 1);
+            nextSpawn = powerups[randPowerup];
         }
 
         return nextSpawn;
