@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -1020,8 +1021,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -1499,10 +1501,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904573602}
     m_Modifications:
-    - target: {fileID: 100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
-      propertyPath: m_Name
-      value: DustStorm
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1559,6 +1557,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
+      propertyPath: m_Name
+      value: DustStorm
+      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -1579,7 +1581,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 3}
 --- !u!4 &269034256 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 1f7aa4d40edff6e48b549003cad031e1,
+    type: 3}
   m_PrefabInstance: {fileID: 269034255}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &270954183 stripped
@@ -2118,16 +2121,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -2149,6 +2142,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -4143,16 +4146,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -4174,6 +4167,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -5750,8 +5753,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 966be606197166640a108ef53355eddf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5960,16 +5961,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -5991,6 +5982,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -7165,8 +7166,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 966be606197166640a108ef53355eddf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -7185,6 +7184,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895620942}
   m_CullTransparentMesh: 0
+--- !u!1 &898244405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898244406}
+  - component: {fileID: 898244407}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898244406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898244405}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.125475, y: 4.944657, z: 88.92447}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1904573602}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &898244407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898244405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b5a4e9e3cf10d47a315f968a4fab26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 0.5
+  enemies:
+  - {fileID: 1059280291626130, guid: 0478b1e28fd9831458b0f051b9d2ad8b, type: 3}
+  - {fileID: 1187812705755764, guid: 9049f178339a1ec49b8d10542e9d6787, type: 3}
+  - {fileID: 1100041121019528, guid: dc92f6c59177d3b48834d869261d80b1, type: 3}
+  - {fileID: 1820530700368936, guid: 4a40092bbc207004fa51b938b96005eb, type: 3}
+  - {fileID: 1322182638669642, guid: ec6c320a41b48f448b4f67e0c941f00d, type: 3}
+  - {fileID: 1111331229742374, guid: 38b63c01674358b448b15ee3a56538f5, type: 3}
+  - {fileID: 1519027769946624, guid: ad19842cc2550fc488240fe1efb03aeb, type: 3}
+  - {fileID: 1337599677547562, guid: 821cb84404cdb734481db5d7b905b37a, type: 3}
+  - {fileID: 1532806333132936, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
+  - {fileID: 1487383133397476, guid: 9aeb31f3dfa2d3f41af8ea1b97d4a12c, type: 3}
+  - {fileID: 1811244258872716, guid: 668f40e714e20ed499014cc822acdb9f, type: 3}
+  - {fileID: 1286071309381800, guid: 137404c3ccadbc94c8eafe555ab8aaee, type: 3}
+  - {fileID: 1503927254158900, guid: aa5781bb5b506524782c6e082a5127e9, type: 3}
+  obstacles: []
 --- !u!1 &931406756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4945074906965283799, guid: 79ab3e109621cc74f9cbb5e3fadff410,
@@ -7503,8 +7561,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -8127,8 +8183,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 966be606197166640a108ef53355eddf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -8385,8 +8439,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -8738,16 +8790,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -8769,6 +8811,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -10181,16 +10233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -10212,6 +10254,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -11155,16 +11207,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -11186,6 +11228,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -11668,8 +11720,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 6858abb4516aae344881bf286b3aac33, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -12232,8 +12282,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -12259,16 +12307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -12290,6 +12328,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
@@ -14542,6 +14590,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14588,6 +14637,7 @@ Transform:
   - {fileID: 534669905}
   - {fileID: 2067324735}
   - {fileID: 269034256}
+  - {fileID: 898244406}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15113,7 +15163,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 950f8b7b75b0e45949ba0a337607535c, type: 3}
 --- !u!4 &2067324735 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 468086, guid: 950f8b7b75b0e45949ba0a337607535c,
+    type: 3}
   m_PrefabInstance: {fileID: 2067324734}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2074276661 stripped
@@ -15231,8 +15282,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -15421,16 +15470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357799784}
     m_Modifications:
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_Name
-      value: Pipe (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pipe
-      objectReference: {fileID: 0}
     - target: {fileID: 4945074908776688434, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
@@ -15452,6 +15491,16 @@ PrefabInstance:
       value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4945074909015507669, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
+        type: 3}
+      propertyPath: m_Name
+      value: Pipe (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945074908998499365, guid: 79ab3e109621cc74f9cbb5e3fadff410,
         type: 3}
       propertyPath: m_TagString
       value: Pipe
