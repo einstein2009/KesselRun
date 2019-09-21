@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pipe
   - ShowOnPause
+  - Powerup
+  - Enemy
   layers:
   - Default
   - TransparentFX
