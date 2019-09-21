@@ -59,8 +59,8 @@ public class Spawner : MonoBehaviour
         else if ((enemyOrObstacle == 1 && obstacles.Length != 0))
         {
             int randObstacle = Random.Range(0, numOfObstacles - 1);
-            nextSpawn.transform.position = tempObject.transform.localPosition;
-            nextSpawn.transform.rotation = tempObject.transform.localRotation;
+            nextSpawn.transform.localPosition = tempObject.transform.localPosition;
+            nextSpawn.transform.localRotation = tempObject.transform.localRotation;
             nextSpawn.transform.localScale = new Vector3(1,1,1);
             nextSpawn = obstacles[randObstacle];
         }
