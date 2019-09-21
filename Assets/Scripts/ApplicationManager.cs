@@ -6,7 +6,7 @@ public class ApplicationManager : MonoBehaviour {
 
     public void NewGame()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainLevel", LoadSceneMode.Single);
     }
 
     public void Quit () 
