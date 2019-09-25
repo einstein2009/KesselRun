@@ -279,8 +279,12 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Exiting " + other.gameObject.name);
         if (other.gameObject.CompareTag("Pipe"))
         {
-            other.gameObject.GetComponent<EndlessPipes>().MoveToFront();
+            EndlessPipes localScript = other.gameObject.GetComponent<EndlessPipes>();
+            if(localScript != null)
+                localScript.MoveToFront();
         }
+
+        
 
     }
 
