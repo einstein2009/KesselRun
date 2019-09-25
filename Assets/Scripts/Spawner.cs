@@ -38,7 +38,11 @@ public class Spawner : MonoBehaviour
         if (spawnCountdown < 0)
         {
             //Get the next random enemy or obstacle: both type and asset are random.
-            nextSpawn = Instantiate(GetNextSpawn(enemies, obstacles, powerups));
+            do
+            {
+                nextSpawn = GetNextSpawn(enemies, obstacles, powerups);
+            } while (nextSpawn == null);
+            Instantiate(nextSpawn);
             spawnCountdown = spawnRate;
         }
     }
