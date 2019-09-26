@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
+    GameObject[] hudObjects;
 
     // Use this for initialization
     void Start()
     {
         Time.timeScale = 1;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        hudObjects = GameObject.FindGameObjectsWithTag("HUD");
         hidePaused();
     }
 
@@ -21,7 +23,7 @@ public class UIManager : MonoBehaviour
     {
 
         //uses the p button to pause and unpause the game
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale == 1)
             {
@@ -60,6 +62,10 @@ public class UIManager : MonoBehaviour
         {
             g.SetActive(true);
         }
+        foreach (GameObject g in hudObjects)
+        {
+            g.SetActive(false);
+        }
     }
 
     //hides objects with ShowOnPause tag
@@ -68,6 +74,10 @@ public class UIManager : MonoBehaviour
         foreach (GameObject g in pauseObjects)
         {
             g.SetActive(false);
+        }
+        foreach (GameObject g in hudObjects)
+        {
+            g.SetActive(true);
         }
     }
 
