@@ -5,30 +5,18 @@ using UnityEngine;
 
 public class GameOverManager : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    public float restartDelay = 30f;
 
-    Animator anim;
-    float restartTimer;
-
-    void Awake()
+    public void MainMenu()
     {
-        anim = GetComponent<Animator>();
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
-
-    void Update()
+    public void Quit()
     {
-        if (playerHealth.currentHealth <= 0)
-        {
-            anim.SetTrigger("GameOver");
-
-            restartTimer += Time.deltaTime;
-
-            if (restartTimer >= restartDelay)
-            {
-                SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-            }
-        }
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+		Application.Quit();
+#endif
     }
 }
