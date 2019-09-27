@@ -9,7 +9,6 @@ public class ScoreManager : MonoBehaviour
 
     Text text;
 
-
     void Awake()
     {
         text = GetComponent<Text>();
@@ -20,10 +19,14 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        if(playerHealth.currentHealth > 0)
+
+        if (playerHealth.currentHealth > 0)
         {
             score += Time.deltaTime;
             text.text = score.ToString("F2") + " Light Years";
+
+            PlayerPrefs.SetFloat("Score", score);
         }
+
     }
 }
