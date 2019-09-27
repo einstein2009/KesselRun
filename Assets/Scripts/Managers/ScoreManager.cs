@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     {
         text = GetComponent<Text>();
         score = 0;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
 
