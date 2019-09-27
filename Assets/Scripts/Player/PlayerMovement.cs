@@ -284,8 +284,6 @@ public class PlayerMovement : MonoBehaviour
                 localScript.MoveToFront();
         }
 
-        
-
     }
 
 

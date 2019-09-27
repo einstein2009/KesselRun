@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3708183007993665272}
   - component: {fileID: 3568555185408092379}
   - component: {fileID: 6316651906748767156}
+  - component: {fileID: 8141000744487740662}
   m_Layer: 0
   m_Name: Rapidfire Powerup
   m_TagString: Powerup
@@ -59,6 +60,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotspeed: 2
+--- !u!136 &8141000744487740662
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971659322942099175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7634399
+  m_Height: 2.9450688
+  m_Direction: 2
+  m_Center: {x: 0.15556167, y: -0.010807034, z: -0.01150918}
 --- !u!1001 &8505890672631499408
 PrefabInstance:
   m_ObjectHideFlags: 0

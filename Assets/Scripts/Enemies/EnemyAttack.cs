@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public int attackDamage = 50;
-
+    private bool hasdonedamage = false;
 
     GameObject player;
     PlayerHealth playerHealth;
@@ -22,9 +22,10 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player && !hasdonedamage)
         {
             Attack();
+            hasdonedamage = true;
         }
     }
 
