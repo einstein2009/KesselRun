@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
         if(playerHealth.currentHealth > 0)
         {
             score += Time.deltaTime;
-            text.text = score.ToString("F2");
+            text.text = score.ToString("F2") + " Light Years";
         }
     }
 }
