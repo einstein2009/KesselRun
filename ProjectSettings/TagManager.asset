@@ -9,8 +9,6 @@ TagManager:
   - Powerup
   - Enemy
   - HUD
-  - Health Pickup
-  - Shield Pickup
   layers:
   - Default
   - TransparentFX
