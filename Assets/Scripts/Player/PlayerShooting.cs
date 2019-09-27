@@ -6,7 +6,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public GameObject shot;
     public Transform[] shotSpawns;
-    public float fireRate;
+    public float fireRate = 2;
 
     private float nextFire;
     private bool rapidfire;
@@ -34,11 +34,39 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Powerup"))
+        {
+            other.gameObject.SetActive(false);
+            // Add Effect
+            if (other.gameObject.name.Contains("Rapidfire"))
+            {
+                // Include a timer UI element
+                SetRapidfire();
+            }
+            else if (other.gameObject.name.Contains("Megabomb"))
+            {
+                DestroyAllEnemies();
+            }
+        } 
+    }
+
+    public void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            // Instantiate an explosion effect
+            Destroy(enemy);
+        }
+    }
+
     public void SetRapidfire()
     {
         if (!rapidfire)
         {
-            fireRate /= 3;
+            fireRate /= 10;
             rapidfire = true;
             Invoke("RemoveRapidfire", 4);
         } else
@@ -54,7 +82,7 @@ public class PlayerShooting : MonoBehaviour
 
     void RemoveRapidfire()
     {
-        fireRate *= 3;
+        fireRate *= 10;
         rapidfire = false;
     }
 }

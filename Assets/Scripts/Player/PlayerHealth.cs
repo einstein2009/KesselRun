@@ -67,19 +67,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Health Pickup"))
+        if (other.gameObject.CompareTag("Powerup"))
         {
             other.gameObject.SetActive(false);
-            currentHealth += 50;
-            healthSlider.value = currentHealth;
+            // Add Effect
+            if (other.gameObject.name.Contains("Heal"))
+            {
+                currentHealth += 50;
+                healthSlider.value = currentHealth;
+            } else if (other.gameObject.name.Contains("Shield"))
+            {
+                currentShields += 100;
+                shieldSlider.value = currentShields;
+            }
         }
 
-        if (other.gameObject.CompareTag("Shield Pickup"))
-        {
-            other.gameObject.SetActive(false);
-            currentShields += 100;
-            shieldSlider.value = currentShields;
-        }
     }
 
 
