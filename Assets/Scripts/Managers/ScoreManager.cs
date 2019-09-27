@@ -5,7 +5,7 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour
 {
     public static float score;
-
+    public PlayerHealth playerHealth;
 
     Text text;
 
@@ -19,7 +19,10 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        score += Time.deltaTime;
-        text.text = score.ToString("F2");
+        if(playerHealth.currentHealth > 0)
+        {
+            score += Time.deltaTime;
+            text.text = score.ToString("F2");
+        }
     }
 }
