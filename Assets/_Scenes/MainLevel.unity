@@ -1385,7 +1385,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.0522774e-29, y: 0, z: 0, w: 2.4e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -7280,6 +7280,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4262004701144926953, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4262004701144926958, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7350,11 +7355,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4.335838
       objectReference: {fileID: 0}
-    - target: {fileID: 4262004701144926953, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents:
     - {fileID: 4262004701144926959, guid: d4d4c27f33645ad49b986fa3fb74d9bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4d4c27f33645ad49b986fa3fb74d9bc, type: 3}
@@ -8305,7 +8305,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.4e-44, z: NaN, w: 0}
+  m_BoundingSphereOverride: {x: 7.097538e+22, y: 3.59e-43, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -12230,6 +12230,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7556403888065917356, guid: 929700c3030b65542acce8118a5c8e94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12249,11 +12254,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
-        type: 3}
-      propertyPath: m_CullingMode
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7556403886182912259, guid: 929700c3030b65542acce8118a5c8e94,
         type: 3}
@@ -19563,7 +19563,13 @@ MonoBehaviour:
   obstacles:
   - {fileID: 6360539603279854619, guid: 1f63559640035b843b1a52d6a5497175, type: 3}
   - {fileID: 2054005509712512780, guid: 01ac14ff468217648ab90579b6812d82, type: 3}
+  - {fileID: 2664397914477520091, guid: 3698c740f2a093d46af29a786c1a07af, type: 3}
+  - {fileID: 2664397914477520091, guid: 48fde74fb974be540994f0ec2887524c, type: 3}
+  obstacles: []
   powerups:
+  - {fileID: 971659322942099175, guid: 9b0bd82c9f661fe4faf1e384c4876d70, type: 3}
+  - {fileID: 9103886400152068252, guid: 5610a2ddd90806d4092eff89a71e070e, type: 3}
+  - {fileID: 8082590533902896425, guid: c126b2847de0a514eaad3de76bded271, type: 3}
   - {fileID: 971659322942099175, guid: 4511162d3fed4a04a94a2f2ac6045f20, type: 3}
   barrierObstacles:
   - {fileID: 8356856248741970374, guid: f883b0a53d78ff64da01828c269ead06, type: 3}
@@ -20616,6 +20622,8 @@ MonoBehaviour:
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   playerShield: {fileID: 1158252134}
+  playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
+  player: {fileID: 0}
   backgroundAudio: {fileID: 1566001081}
   deathAudio: {fileID: 357401685}
   damageAudio: {fileID: 1517624289}
