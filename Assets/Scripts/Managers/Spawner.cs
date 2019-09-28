@@ -56,6 +56,7 @@ public class Spawner : MonoBehaviour
     private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles, GameObject[] powerups){
 
         Transform tempTransform = GetTransform();
+        Random.InitState(System.DateTime.Now.Millisecond);
 
         //Enemy = 0
         //Obstacle = 1
@@ -72,16 +73,16 @@ public class Spawner : MonoBehaviour
         else if ((enemyOrObstacleOrPowerup == 1 && obstacles.Length != 0))
         {
             int randObstacle = Random.Range(0, numOfObstacles - 1);
+            nextSpawn = obstacles[randObstacle];
             nextSpawn.transform.position = tempTransform.position;
             nextSpawn.transform.rotation = tempTransform.rotation;
-            nextSpawn = obstacles[randObstacle];
         }
         else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
         {
             int randPowerup = Random.Range(0, numOfPowerups - 1);
+            nextSpawn = powerups[randPowerup];
             nextSpawn.transform.position = tempTransform.position;
             nextSpawn.transform.rotation = tempTransform.rotation;
-            nextSpawn = powerups[randPowerup];
         }
 
         return nextSpawn;
