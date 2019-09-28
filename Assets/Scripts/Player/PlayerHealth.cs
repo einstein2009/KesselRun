@@ -10,12 +10,16 @@ public class PlayerHealth : MonoBehaviour
     public int startingShields = 0;
     public int currentHealth;
     public int currentShields;
+
     public Slider healthSlider;
     public Slider shieldSlider;
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+
     public GameObject playerShield;
+    public GameObject playerExplosion;
+    public GameObject player;
 
     public AudioSource backgroundAudio;
     public AudioSource deathAudio;
@@ -32,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player");
         playerShooting = GetComponentInChildren<PlayerShooting>();
         currentHealth = startingHealth;
         currentShields = startingShields;
@@ -91,11 +96,19 @@ public class PlayerHealth : MonoBehaviour
             {
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
+                if(currentHealth > 100)
+                {
+                    currentHealth = 100;
+                }
                 Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
                 currentShields = 100;
                 shieldSlider.value = currentShields;
+                if(currentShields > 100)
+                {
+                    currentShields = 100;
+                }
                 Debug.Log("Shield +100");
                 if (shieldOn)
                     return;
@@ -123,12 +136,18 @@ public class PlayerHealth : MonoBehaviour
     {
         deathAudio.Play();
         currentHealth = 0;
+        playerMovement.enabled = false;
+        playerShooting.enabled = false;
+        MeshRenderer m = player.GetComponent<MeshRenderer>();
+        m.enabled = false;
+        for (int i = 0; i < 3; i++)
+        {
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+        }
+
         StartCoroutine(FadeOutBackground());
 
         isDead = true;
-
-        playerMovement.enabled = false;
-        playerShooting.enabled = false;
     }
 
 

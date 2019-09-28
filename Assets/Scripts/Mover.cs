@@ -12,4 +12,20 @@ public class Mover : MonoBehaviour
         transform.position += transform.forward * speed;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyHealth hp = other.gameObject.GetComponent<EnemyHealth>();
+            if (hp != null)
+            {
+                hp.Die();
+            } else
+            {
+                Destroy(other.gameObject);
+            }
+            Destroy(gameObject);
+        }
+    }
+
 }

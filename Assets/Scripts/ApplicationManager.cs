@@ -4,10 +4,13 @@ using System.Collections;
 
 public class ApplicationManager : MonoBehaviour {
 
+    public bool newGameBool = false;
+
     public void NewGame()
     {
-        SceneManager.LoadScene("MainLevel", LoadSceneMode.Single);
+        newGameBool = true;
     }
+
 
     public void Quit () 
 	{
