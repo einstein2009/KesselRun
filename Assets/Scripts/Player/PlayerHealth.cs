@@ -85,11 +85,19 @@ public class PlayerHealth : MonoBehaviour
             {
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
+                if(currentHealth > 100)
+                {
+                    currentHealth = 100;
+                }
                 Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
                 currentShields += 100;
                 shieldSlider.value = currentShields;
+                if(currentShields > 100)
+                {
+                    currentShields = 100;
+                }
                 Debug.Log("Shield +100");
                 if (shieldOn)
                     return;
