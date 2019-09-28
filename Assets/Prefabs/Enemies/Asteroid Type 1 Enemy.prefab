@@ -29,13 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2664397914477520091}
-<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0.8651661, w: 0.50148535}
   m_LocalPosition: {x: -2.453043, y: 5.4108167, z: 911.9491}
-=======
-  m_LocalRotation: {x: -0, y: -0, z: -0.5016998, w: 0.8650418}
-  m_LocalPosition: {x: -1.8491826, y: 2.88169, z: 985.6816}
->>>>>>> Stephen
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7877099743686574080}
@@ -122,8 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff71a31fbede9e04994b07fd802e981c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
-  enemyExplosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
 --- !u!1001 &7877099743686711936
 PrefabInstance:
   m_ObjectHideFlags: 0
