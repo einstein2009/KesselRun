@@ -12,7 +12,7 @@ public class GameOverScoreSetter : MonoBehaviour
     {
         float temp = PlayerPrefs.GetFloat("Score");
 
-        theScore.text = temp.ToString("F2");
+        theScore.text = temp.ToString("F2") + " Light Years";
     }
 
 }
