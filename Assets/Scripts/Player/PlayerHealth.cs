@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class PlayerHealth : MonoBehaviour
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
+    public AudioSource backgroundAudio;
+    public AudioSource deathAudio;
+    public AudioSource damageAudio;
+
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
 
+   
 
     void Awake()
     {
@@ -47,6 +53,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         damaged = true;
+
+        damageAudio.Play();
 
         currentShields -= amount;
 
@@ -87,12 +95,26 @@ public class PlayerHealth : MonoBehaviour
 
     void Death()
     {
+        deathAudio.Play();
+
+        StartCoroutine(FadeOutBackground());
+
         isDead = true;
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
     }
 
+
+    IEnumerator FadeOutBackground()
+    {
+        while (backgroundAudio.volume > 0.001f)
+        {
+            backgroundAudio.volume -= Time.deltaTime / 0.5f;
+            yield return null;
+        }
+
+    }
 
     public void RestartLevel()
     {
