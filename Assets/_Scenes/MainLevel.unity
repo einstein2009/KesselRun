@@ -19436,8 +19436,12 @@ MonoBehaviour:
   spawnRate: 0.5
   enemies:
   - {fileID: 2664397914477520091, guid: 3698c740f2a093d46af29a786c1a07af, type: 3}
+  - {fileID: 2664397914477520091, guid: 48fde74fb974be540994f0ec2887524c, type: 3}
   obstacles: []
   powerups:
+  - {fileID: 971659322942099175, guid: 9b0bd82c9f661fe4faf1e384c4876d70, type: 3}
+  - {fileID: 9103886400152068252, guid: 5610a2ddd90806d4092eff89a71e070e, type: 3}
+  - {fileID: 8082590533902896425, guid: c126b2847de0a514eaad3de76bded271, type: 3}
   - {fileID: 971659322942099175, guid: 4511162d3fed4a04a94a2f2ac6045f20, type: 3}
   MiddleSpawn: {fileID: 933184205}
   RightSpawn: {fileID: 423434673}
