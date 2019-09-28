@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public Image damageImage;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public GameObject playerShield;
 
     public AudioSource backgroundAudio;
     public AudioSource deathAudio;
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
+    bool shieldOn;
 
    
 
@@ -75,21 +77,41 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Powerup"))
+        if (other.CompareTag("Powerup"))
         {
             other.gameObject.SetActive(false);
             // Add Effect
-            if (other.gameObject.name.Contains("Heal"))
+            if (other.name.Contains("Heal"))
             {
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
-            } else if (other.gameObject.name.Contains("Shield"))
+                Debug.Log("Healing 50");
+            } else if (other.name.Contains("Shield"))
             {
                 currentShields += 100;
                 shieldSlider.value = currentShields;
-            }
+                Debug.Log("Shield +100");
+                if (shieldOn)
+                    return;
+                TurnShieldOn();
+                Invoke("TurnShieldOff", 10);
+            } 
         }
 
+    }
+
+    void TurnShieldOn()
+    {
+        playerShield.SetActive(true);
+        //playerHealth.isImmune = true;
+        shieldOn = true;
+    }
+
+    void TurnShieldOff()
+    {
+        playerShield.SetActive(false);
+        //playerHealth.isImmune = false;
+        shieldOn = false;
     }
 
 
