@@ -40,14 +40,16 @@ public class PlayerShooting : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             // Add Effect
-            if (other.gameObject.name.Contains("Rapidfire"))
+            if (other.name.Contains("Rapidfire"))
             {
                 // Include a timer UI element
                 SetRapidfire();
+                Debug.Log("Rapidfire On");
             }
-            else if (other.gameObject.name.Contains("Megabomb"))
+            else if (other.name.Contains("Megabomb"))
             {
                 DestroyAllEnemies();
+                Debug.Log("Destroying Enemies");
             }
         } 
     }

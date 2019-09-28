@@ -73,13 +73,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentLane = targetLane;
                 targetLane++;
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingLeft)
             {
                 currentLane = targetLane;
                 targetLane++;
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = 3;
                         break;
                 }
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
 
@@ -113,13 +113,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentLane = targetLane;
                 targetLane--;
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingRight)
             {
                 currentLane = targetLane;
                 targetLane--;
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = -3;
                         break;
                 }
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
         if (targetLane > 2 || targetLane < -2)
