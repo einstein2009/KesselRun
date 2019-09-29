@@ -150,8 +150,10 @@ public class PlayerMovement : MonoBehaviour
         if (targetLane > 2 || targetLane < -2)
         {
             Fall();
-
+<<<<<<< HEAD
             Invoke("GameOver", 5);
+=======
+>>>>>>> origin/Nick
         }
         else
         {
