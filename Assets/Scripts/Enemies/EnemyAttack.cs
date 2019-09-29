@@ -26,15 +26,9 @@ public class EnemyAttack : MonoBehaviour
         {
             Attack();
             hasdonedamage = true;
+            this.gameObject.GetComponent<EnemyHealth>().Die();
         }
     }
-
-
-    void Update()
-    {
-
-    }
-
 
     void Attack()
     {
