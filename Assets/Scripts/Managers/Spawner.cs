@@ -18,9 +18,9 @@ public class Spawner : MonoBehaviour
     public Transform LeftSpawn;
     public Transform TopRightSpawn;
     public Transform TopLeftSpawn;
-    /*public Transform LeftBarrierSpawn;
+    public Transform LeftBarrierSpawn;
     public Transform MiddleBarrierSpawn;
-    public Transform RightBarrierSpawn;*/
+    public Transform RightBarrierSpawn;
 
     private GameObject nextSpawn;
     private GameObject nextBarrierSpawn;
@@ -100,9 +100,9 @@ public class Spawner : MonoBehaviour
         //Switch case to return a loc
         switch (randLoc)
         {
-            //case 0: return LeftBarrierSpawn;
-            //case 1: return MiddleBarrierSpawn;
-            //case 2: return RightBarrierSpawn;
+            case 0: return LeftBarrierSpawn;
+            case 1: return MiddleBarrierSpawn;
+            case 2: return RightBarrierSpawn;
             default: return transform;
         }
     }
