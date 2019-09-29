@@ -54,6 +54,11 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
+
+        if (currentShields <= 0)
+        {
+            TurnShieldOff();
+        }
     }
 
 
@@ -63,11 +68,13 @@ public class PlayerHealth : MonoBehaviour
 
         damageAudio.Play();
 
-        currentShields -= amount;
-
-        shieldSlider.value = currentShields;
-
-        if (currentShields <= 0 && currentHealth > 0)
+        //only take damage once.
+        if (currentShields > 0)
+        {
+            currentShields -= amount;
+            shieldSlider.value = currentShields;
+        }
+        else if (currentShields <= 0 && currentHealth > 0)
         {
             currentHealth -= amount;
             healthSlider.value = currentHealth;
@@ -77,7 +84,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
-                currentShields += 100;
+                currentShields = 100;
                 shieldSlider.value = currentShields;
                 if(currentShields > 100)
                 {
@@ -107,10 +113,8 @@ public class PlayerHealth : MonoBehaviour
                 if (shieldOn)
                     return;
                 TurnShieldOn();
-                Invoke("TurnShieldOff", 10);
             } 
         }
-
     }
 
     void TurnShieldOn()
@@ -131,6 +135,7 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         deathAudio.Play();
+        currentHealth = 0;
         playerMovement.enabled = false;
         playerShooting.enabled = false;
         MeshRenderer m = player.GetComponent<MeshRenderer>();

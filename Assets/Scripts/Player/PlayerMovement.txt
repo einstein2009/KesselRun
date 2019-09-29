@@ -1,0 +1,50 @@
+•	Is the group’s game an original idea or a reimagining of a classic game?
+
+Reimaging the Frequency Classic with the Subway Surfer platform style.
+
+•	What is the genre? i.e.: puzzle, action, adventure, RPG, FPS?
+
+Endless Running/Platformer
+
+•	What will be the place, time, and setting?
+
+Place: Space
+Time: 2005, when the galaxy was discovered
+Setting: Virgo Stellar Stream
+
+•	Who is the hero/main playable character? 
+	o	Think back to GSD401 (3-D Character Design) on how characters’ sketches were developed. 
+	o	How would you model them?
+	
+A Spaceship
+	
+	
+•	Who are the enemies?
+	o	How many will there be? 
+	o	How would you model them?
+	
+Obstacles - rocks, debris, laser/explosives, possible enemies	
+	
+•	How many levels will there be?
+	o	For this project, there will only need to be one playable level.
+
+One endless level which varies on score or time possibly.
+
+•	How many objects and objectives will there be?
+	o	These objects and objectives will include weapons, items, power-ups, the things that will be collected and interacted with.
+	
+One main objective + sub objectives
++ Objective survive
+- get high score
+- collect power-ups/items
+	
+•	What is the "working title" of the game?
+
+"Kessel Run"
+
+•	What game mechanics will your game have?
+
+Switching between lanes
+Combo attacks/dodges (point multiplier)
+Powerup pickups
+
