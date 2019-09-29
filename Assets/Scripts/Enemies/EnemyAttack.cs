@@ -10,6 +10,9 @@ public class EnemyAttack : MonoBehaviour
     GameObject player;
     PlayerHealth playerHealth;
 
+    float timer;
+
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");

@@ -33,14 +33,12 @@ public class PlayerMovement : MonoBehaviour
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
-    private PlayerHealth playerHealth;
 
 
 
     void Awake()
     {
         //controller = GetComponent<CharacterController>();
-        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
@@ -150,10 +148,7 @@ public class PlayerMovement : MonoBehaviour
         if (targetLane > 2 || targetLane < -2)
         {
             Fall();
-<<<<<<< HEAD
             Invoke("GameOver", 5);
-=======
->>>>>>> origin/Nick
         }
         else
         {
@@ -288,10 +283,7 @@ public class PlayerMovement : MonoBehaviour
             if(localScript != null)
                 localScript.MoveToFront();
         }
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            playerHealth.Death();
-        }
+
     }
 
 
@@ -299,4 +291,5 @@ public class PlayerMovement : MonoBehaviour
     {
         movementSound.Play();
     }
+
 }
