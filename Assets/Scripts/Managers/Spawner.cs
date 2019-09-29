@@ -11,27 +11,36 @@ public class Spawner : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] obstacles;
     public GameObject[] powerups;
+    public GameObject[] barrierObstacles;
 
     public Transform MiddleSpawn;
     public Transform RightSpawn;
     public Transform LeftSpawn;
     public Transform TopRightSpawn;
     public Transform TopLeftSpawn;
+    public Transform LeftBarrierSpawn;
+    public Transform MiddleBarrierSpawn;
+    public Transform RightBarrierSpawn;
 
     private GameObject nextSpawn;
+    private GameObject nextBarrierSpawn;
     private GameObject enemySpawner;
     private int numOfEnemies;
     private int numOfObstacles;
     private int numOfPowerups;
+    private int numOfBarrierObstacles;
     private float spawnCountdown;
+    private float barrierSpawnCountdown;
 
     void Start()
     {
         spawnCountdown = spawnRate;
+        barrierSpawnCountdown = .1f;
         enemySpawner = this.gameObject;
         numOfEnemies = enemies.Length;
         numOfObstacles = obstacles.Length;
         numOfPowerups = powerups.Length;
+        numOfBarrierObstacles = barrierObstacles.Length;
     }
 
 
@@ -50,6 +59,51 @@ public class Spawner : MonoBehaviour
             } while (nextSpawn == null);
             Instantiate(nextSpawn);
             spawnCountdown = spawnRate;
+        }
+
+        barrierSpawnCountdown -= Time.deltaTime;
+        if (barrierSpawnCountdown < 0)
+        {
+            //Get the next random enemy or obstacle: both type and asset are random.
+            do
+            {
+                nextBarrierSpawn = GetNextBarrierSpawn(barrierObstacles);
+            } while (nextBarrierSpawn == null);
+            Instantiate(nextBarrierSpawn);
+            barrierSpawnCountdown = .1f;
+        }
+    }
+
+    private GameObject GetNextBarrierSpawn(GameObject[] barrierObjects)
+    {
+        Transform tempBarrierTransform = GetBarrierTransform();
+        Random.InitState(System.DateTime.Now.Millisecond);
+
+        if (enemies.Length != 0)
+        {
+            int randBarrier = Random.Range(0, numOfBarrierObstacles - 1);
+            nextBarrierSpawn = barrierObstacles[randBarrier];
+            nextBarrierSpawn.transform.position = tempBarrierTransform.position;
+            nextBarrierSpawn.transform.rotation = tempBarrierTransform.rotation;
+        }
+        else
+            nextBarrierSpawn = null;
+
+        return nextBarrierSpawn;
+    }
+
+    private Transform GetBarrierTransform()
+    {
+        //Get random Loc
+        int randLoc = Random.Range(0, 3);
+
+        //Switch case to return a loc
+        switch (randLoc)
+        {
+            case 0: return LeftBarrierSpawn;
+            case 1: return MiddleBarrierSpawn;
+            case 2: return RightBarrierSpawn;
+            default: return transform;
         }
     }
 
@@ -87,6 +141,9 @@ public class Spawner : MonoBehaviour
             nextSpawn.transform.position = tempTransform.position;
             nextSpawn.transform.rotation = tempTransform.rotation;
         }
+        //multiple spawning issue fixed, it was only an issue when we didn't have obstacles populated.
+        else
+            nextSpawn = null;
 
         return nextSpawn;
     }
@@ -106,6 +163,4 @@ public class Spawner : MonoBehaviour
             default: return transform;
         }
     }
-
-
 }
