@@ -54,6 +54,11 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
+
+        if (currentShields <= 0)
+        {
+            TurnShieldOff();
+        }
     }
 
 
@@ -63,11 +68,15 @@ public class PlayerHealth : MonoBehaviour
 
         damageAudio.Play();
 
-        currentShields -= amount;
+        //currentShields -= amount;
+        //shieldSlider.value = currentShields;
 
-        shieldSlider.value = currentShields;
-
-        if (currentShields <= 0 && currentHealth > 0)
+        if(currentShields > 0)
+        {
+            currentShields -= amount;
+            shieldSlider.value = currentShields;
+        }
+        else if (currentShields <= 0 && currentHealth > 0)
         {
             currentHealth -= amount;
             healthSlider.value = currentHealth;
@@ -77,7 +86,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -107,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
                 if (shieldOn)
                     return;
                 TurnShieldOn();
-                Invoke("TurnShieldOff", 10);
+
             } 
         }
 
