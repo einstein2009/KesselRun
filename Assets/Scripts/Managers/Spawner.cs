@@ -68,7 +68,15 @@ public class Spawner : MonoBehaviour
         //Obstacle = 1
         //Powerup = 2
 
-        int enemyOrObstacleOrPowerup = Random.Range(0, 3);
+        float enemyOrObstacleOrPowerup = Random.Range(0f, 1f);
+
+        if(enemyOrObstacleOrPowerup < 0.75)
+        {
+            enemyOrObstacleOrPowerup = 0;
+        } else
+        {
+            enemyOrObstacleOrPowerup = 2;
+        }
 
         if (enemyOrObstacleOrPowerup == 0 && enemies.Length != 0)
         {
