@@ -150,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (targetLane > 2 || targetLane < -2)
         {
             Fall();
+            Invoke("GameOver", 5);
         }
         else
         {
@@ -177,9 +178,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Reset()
+    private void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().currentHealth = 0;
     }
 
     private bool isGrounded()
