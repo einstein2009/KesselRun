@@ -1385,7 +1385,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.0522774e-29, y: 0, z: 0, w: 2.4e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -5864,7 +5864,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.38888884, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7250,6 +7250,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4262004701144926953, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4262004701144926958, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7320,11 +7325,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4.335838
       objectReference: {fileID: 0}
-    - target: {fileID: 4262004701144926953, guid: d4d4c27f33645ad49b986fa3fb74d9bc,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents:
     - {fileID: 4262004701144926959, guid: d4d4c27f33645ad49b986fa3fb74d9bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4d4c27f33645ad49b986fa3fb74d9bc, type: 3}
@@ -8242,7 +8242,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.4e-44, z: NaN, w: 0}
+  m_BoundingSphereOverride: {x: 7.097538e+22, y: 3.59e-43, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -12137,6 +12137,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7556403888065917356, guid: 929700c3030b65542acce8118a5c8e94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12156,11 +12161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
-        type: 3}
-      propertyPath: m_CullingMode
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7556403886182912259, guid: 929700c3030b65542acce8118a5c8e94,
         type: 3}
@@ -18106,7 +18106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.030314207, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -20489,6 +20489,8 @@ MonoBehaviour:
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
   playerShield: {fileID: 1158252134}
+  playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
+  player: {fileID: 0}
   backgroundAudio: {fileID: 1566001081}
   deathAudio: {fileID: 357401685}
   damageAudio: {fileID: 1517624289}

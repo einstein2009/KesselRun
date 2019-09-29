@@ -29,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
+
             nextFire = Time.time + fireRate;
             /*if (rapidfire)
             {
