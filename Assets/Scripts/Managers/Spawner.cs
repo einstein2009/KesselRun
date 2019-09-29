@@ -32,6 +32,7 @@ public class Spawner : MonoBehaviour
         numOfEnemies = enemies.Length;
         numOfObstacles = obstacles.Length;
         numOfPowerups = powerups.Length;
+        Random.InitState(42);
     }
 
 
@@ -56,16 +57,15 @@ public class Spawner : MonoBehaviour
     private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles, GameObject[] powerups){
 
         Transform tempTransform = GetTransform();
-        Random.InitState(System.DateTime.Now.Millisecond);
 
         //Enemy = 0
         //Obstacle = 1
         //Powerup = 2
+
         int enemyOrObstacleOrPowerup = Random.Range(0, 3);
 
         if (enemyOrObstacleOrPowerup == 0 && enemies.Length != 0)
         {
-            Random.InitState(System.DateTime.Now.Millisecond);
             int randEnemy = Random.Range(0, numOfEnemies - 1);
             nextSpawn = enemies[randEnemy];
             nextSpawn.transform.position = tempTransform.position;
@@ -73,7 +73,6 @@ public class Spawner : MonoBehaviour
         }
         else if ((enemyOrObstacleOrPowerup == 1 && obstacles.Length != 0))
         {
-            Random.InitState(System.DateTime.Now.Millisecond);
             int randObstacle = Random.Range(0, numOfObstacles - 1);
             nextSpawn = obstacles[randObstacle];
             nextSpawn.transform.position = tempTransform.position;
@@ -81,7 +80,6 @@ public class Spawner : MonoBehaviour
         }
         else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
         {
-            Random.InitState(System.DateTime.Now.Millisecond);
             int randPowerup = Random.Range(0, numOfPowerups - 1);
             nextSpawn = powerups[randPowerup];
             nextSpawn.transform.position = tempTransform.position;
@@ -103,7 +101,7 @@ public class Spawner : MonoBehaviour
             case 2: return LeftSpawn;
             case 3: return TopRightSpawn;
             case 4: return TopLeftSpawn;
-            default: return transform;
+            default: return MiddleSpawn;
         }
     }
 
