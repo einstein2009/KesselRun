@@ -128,7 +128,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    void Death()
+    public void Death()
     {
         deathAudio.Play();
         playerMovement.enabled = false;
