@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         if (targetLane > 2 || targetLane < -2)
         {
             Fall();
-            Invoke("GameOver", 5);
+            Invoke("GameOver", 3);
         }
         else
         {
