@@ -68,8 +68,10 @@ public class PlayerHealth : MonoBehaviour
 
         damageAudio.Play();
 
-        //only take damage once.
-        if (currentShields > 0)
+        //currentShields -= amount;
+        //shieldSlider.value = currentShields;
+
+        if(currentShields > 0)
         {
             currentShields -= amount;
             shieldSlider.value = currentShields;
@@ -103,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
-                currentShields = 100;
+                currentShields += 100;
                 shieldSlider.value = currentShields;
                 if(currentShields > 100)
                 {
@@ -113,8 +115,10 @@ public class PlayerHealth : MonoBehaviour
                 if (shieldOn)
                     return;
                 TurnShieldOn();
+
             } 
         }
+
     }
 
     void TurnShieldOn()
@@ -135,7 +139,6 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         deathAudio.Play();
-        currentHealth = 0;
         playerMovement.enabled = false;
         playerShooting.enabled = false;
         MeshRenderer m = player.GetComponent<MeshRenderer>();
