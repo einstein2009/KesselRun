@@ -27,29 +27,38 @@ public class PlayerMovement : MonoBehaviour
 
     private bool movingRight = false;
     private bool movingLeft = false;
+    private bool movingTop = false;
     private bool falling = false;
 
     private int currentLane = 0; // Middle
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
-    private PlayerHealth playerHealth;
-
-
+    
 
     void Awake()
     {
         //controller = GetComponent<CharacterController>();
-        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
         //Keep Moving Forward
-        transform.position += Vector3.forward * Time.deltaTime * speed;
+        //transform.position += Vector3.forward * Time.deltaTime * speed;
+        Debug.Log(falling.ToString());
+        if (!falling)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+        }
+        else{
+            transform.Translate(Vector3.up * Time.deltaTime * 12f + Vector3.forward * Time.deltaTime * speed, Space.World);
+            transform.Rotate(Vector3.right + Vector3.forward, 35 * Time.deltaTime, Space.Self);
+            Camera.main.fieldOfView += 40 * Time.deltaTime;
+        }
+            
 
         //Jump
-        if (isGrounded())
+        /*if (isGrounded())
         {
             if (Input.GetButton("Jump"))
             {
@@ -65,23 +74,23 @@ public class PlayerMovement : MonoBehaviour
             // Apply gravity
             moveDirection.y -= gravity * Time.deltaTime;
         }
-        transform.Translate(moveDirection * Time.deltaTime);
+        transform.Translate(moveDirection * Time.deltaTime);*/
 
 
         // Switch to the lane on the right
-        if (Input.GetKeyDown(KeyCode.D) && !falling)
+        if (Input.GetKeyDown(KeyCode.D) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingRight)
             {
                 currentLane = targetLane;
                 targetLane++;
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingLeft)
             {
                 currentLane = targetLane;
                 targetLane++;
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -104,24 +113,24 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = 3;
                         break;
                 }
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
 
         // Switch to the lane on the left
-        if (Input.GetKeyDown(KeyCode.A) && !falling)
+        if (Input.GetKeyDown(KeyCode.A) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingLeft)
             {
                 currentLane = targetLane;
                 targetLane--;
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingRight)
             {
                 currentLane = targetLane;
                 targetLane--;
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -144,21 +153,24 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = -3;
                         break;
                 }
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
-        if (targetLane > 2 || targetLane < -2)
+
+        if ((targetLane > 2 || targetLane < -2))
         {
-            Fall();
-            Invoke("GameOver", 5);
-        }
-        else
+            if(!falling)
+                MoveTop();
+            
+            if(!IsInvoking("GameOver"))
+            Invoke("GameOver", 3);
+        } else
         {
             if (movingRight)
             {
                 MoveRight();
             }
-            if (movingLeft)
+            else if (movingLeft)
             {
                 MoveLeft();
             }
@@ -166,15 +178,23 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Fall()
+    private void MoveTop()
     {
-        falling = true;
-        gravity = 50f;
+        movingTop = true;
+
         targetVector3 = new Vector3(topTransform.position.x, topTransform.position.y, transform.position.z);
         targetQuaternion = topTransform.rotation;
 
+        if (Vector3.Distance(transform.position, targetVector3) < 0.09)
+        {
+            //Debug.Log("setting falling true");
+            falling = true;
+            return;
+        }
+
         transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
+
 
     }
 
@@ -285,10 +305,7 @@ public class PlayerMovement : MonoBehaviour
             if(localScript != null)
                 localScript.MoveToFront();
         }
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            playerHealth.Death();
-        }
+
     }
 
 
@@ -296,4 +313,5 @@ public class PlayerMovement : MonoBehaviour
     {
         movementSound.Play();
     }
+
 }

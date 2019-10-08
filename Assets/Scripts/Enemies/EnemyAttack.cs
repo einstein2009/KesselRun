@@ -10,6 +10,9 @@ public class EnemyAttack : MonoBehaviour
     GameObject player;
     PlayerHealth playerHealth;
 
+    float timer;
+
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,15 +26,9 @@ public class EnemyAttack : MonoBehaviour
         {
             Attack();
             hasdonedamage = true;
+            this.gameObject.GetComponent<EnemyHealth>().Die();
         }
     }
-
-
-    void Update()
-    {
-
-    }
-
 
     void Attack()
     {
