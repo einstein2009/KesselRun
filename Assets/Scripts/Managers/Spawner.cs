@@ -34,7 +34,6 @@ public class Spawner : MonoBehaviour
         numOfEnemies = enemies.Length;
         numOfObstacles = obstacles.Length;
         numOfPowerups = powerups.Length;
-        numOfBarrierObstacles = barrierObstacles.Length;
         Random.InitState(42);
     }
 
@@ -54,7 +53,6 @@ public class Spawner : MonoBehaviour
                 nextSpawn = GetNextSpawn(enemies, obstacles, powerups);
             } while (nextSpawn == null);
             GameObject newSpawn = Instantiate(nextSpawn);
-            //newSpawn.transform.SetParent(nextTransform);
             newSpawn.transform.localPosition = nextTransform.position;
             newSpawn.transform.localRotation = nextTransform.rotation;
 
@@ -81,22 +79,16 @@ public class Spawner : MonoBehaviour
         {
             int randEnemy = Random.Range(0, numOfEnemies - 1);
             nextSpawn = enemies[randEnemy];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         }
         else if ((enemyOrObstacleOrPowerup == 1 && obstacles.Length != 0))
         {
             int randObstacle = Random.Range(0, numOfObstacles - 1);
             nextSpawn = obstacles[randObstacle];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         }
         else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
         {
             int randPowerup = Random.Range(0, numOfPowerups - 1);
             nextSpawn = powerups[randPowerup];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         } else
         {
             nextSpawn = null;
