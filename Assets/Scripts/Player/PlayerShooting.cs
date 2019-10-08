@@ -27,7 +27,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetButton("Fire1") && Time.time > nextFire || Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
         {
 
             nextFire = Time.time + fireRate;
@@ -45,7 +45,7 @@ public class PlayerShooting : MonoBehaviour
             Instantiate(shot, shotSpawns[2].position, shotSpawns[2].rotation);
             shotSound.Play();
         }
-        if (Input.GetKeyDown(KeyCode.B) && bombReady)
+        if (Input.GetKeyDown(KeyCode.B) && bombReady || Input.GetButton("Fire2") && bombReady)
         {
             TriggerMegabombDestruction();
         }
