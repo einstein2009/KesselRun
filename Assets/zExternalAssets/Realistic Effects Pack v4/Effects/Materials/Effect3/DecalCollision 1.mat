@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: DecalCollision 1
   m_Shader: {fileID: 4800000, guid: d8f400148b999fe41bd30759b3a9126b, type: 3}
   m_ShaderKeywords: USE_FRAME_BLENDING USE_SCRIPT_FRAMEBLENDING _BLENDMODE_ADD
@@ -53,7 +54,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: e8ccd4c08dced06498e10974194597ac, type: 3}
         m_Scale: {x: 0.125, y: 0.125}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0.25, y: 0.75}
     - _Mask:
         m_Texture: {fileID: 2800000, guid: e8ccd4c08dced06498e10974194597ac, type: 3}
         m_Scale: {x: 0.125, y: 0.125}
