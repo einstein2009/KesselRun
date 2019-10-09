@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playerShield;
     public GameObject playerExplosion;
     public GameObject player;
+    public GameObject playerEngine;
 
     public AudioSource backgroundAudio;
     public AudioSource deathAudio;
@@ -149,6 +150,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
+        playerEngine.SetActive(false);
         deathAudio.Play();
         playerMovement.enabled = false;
         playerShooting.enabled = false;

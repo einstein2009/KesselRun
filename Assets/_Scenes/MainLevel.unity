@@ -986,6 +986,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 1051398186}
+--- !u!1 &95729918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 62ea8a5ca94c546f29ba6dea8f379a7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2090916262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &104608940
 Mesh:
   m_ObjectHideFlags: 0
@@ -21294,7 +21300,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 62ea8a5ca94c546f29ba6dea8f379a7b, type: 3}
       propertyPath: m_Name
-      value: engines_player
+      value: PlayerEngines
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 62ea8a5ca94c546f29ba6dea8f379a7b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22009,6 +22015,7 @@ MonoBehaviour:
   playerShield: {fileID: 1158252134}
   playerExplosion: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
   player: {fileID: 0}
+  playerEngine: {fileID: 95729918}
   backgroundAudio: {fileID: 1566001081}
   deathAudio: {fileID: 357401685}
   damageAudio: {fileID: 1517624289}
