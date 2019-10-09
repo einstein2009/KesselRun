@@ -122,7 +122,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (!rapidfire)
         {
-            fireRate /= 10;
+            fireRate /= 3;
             rapidfire = true;
             Invoke("RemoveRapidfire", 4);
         } else
@@ -179,7 +179,7 @@ public class PlayerShooting : MonoBehaviour
 
     void RemoveRapidfire()
     {
-        fireRate *= 10;
+        fireRate *= 3;
         rapidfire = false;
     }
 }
