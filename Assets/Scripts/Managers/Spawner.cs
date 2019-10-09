@@ -27,6 +27,8 @@ public class Spawner : MonoBehaviour
     private int numOfPowerups;
     private float spawnCountdown;
 
+    private GameObject player;
+
 
     void Start()
     {
@@ -36,6 +38,8 @@ public class Spawner : MonoBehaviour
         numOfObstacles = obstacles.Length + 1;
         numOfPowerups = powerups.Length;
         Random.InitState(42);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -58,6 +62,7 @@ public class Spawner : MonoBehaviour
             GameObject newSpawn = Instantiate(nextSpawn);
             //newSpawn.transform.SetParent(nextTransform);
             newSpawn.transform.position = nextTransform.position;
+            newSpawn.transform.Translate(0f, 0f, player.transform.position.z + 80);
             newSpawn.transform.rotation = nextTransform.rotation;
 
         }
