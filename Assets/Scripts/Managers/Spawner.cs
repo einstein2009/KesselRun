@@ -32,8 +32,8 @@ public class Spawner : MonoBehaviour
     {
         spawnCountdown = spawnRate;
         enemySpawner = this.gameObject;
-        numOfEnemies = enemies.Length;
-        numOfObstacles = obstacles.Length;
+        numOfEnemies = enemies.Length + 1;
+        numOfObstacles = obstacles.Length + 1;
         numOfPowerups = powerups.Length;
         Random.InitState(42);
     }
@@ -50,19 +50,20 @@ public class Spawner : MonoBehaviour
             spawnCountdown = spawnRate;
             //Get the next random enemy or obstacle: both type and asset are random.
             nextTransform = GetTransform();
+            Debug.Log(nextTransform.position + " " + nextTransform.rotation);
             do
             {
                 nextSpawn = GetNextSpawn(enemies, obstacles, powerups);
             } while (nextSpawn == null);
             GameObject newSpawn = Instantiate(nextSpawn);
             //newSpawn.transform.SetParent(nextTransform);
-            newSpawn.transform.localPosition = nextTransform.position;
-            newSpawn.transform.localRotation = nextTransform.rotation;
+            newSpawn.transform.position = nextTransform.position;
+            newSpawn.transform.rotation = nextTransform.rotation;
 
         }
     }
 
-    private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles, GameObject[] powerups){
+    private GameObject GetNextSpawn(GameObject[] enemies, GameObject[] obstacles, GameObject[] powerups) {
 
         //Enemy = 0
         //Obstacle = 1
@@ -70,10 +71,14 @@ public class Spawner : MonoBehaviour
 
         float enemyOrObstacleOrPowerup = Random.Range(0f, 1f);
 
-        if(enemyOrObstacleOrPowerup < 0.75)
+        if (enemyOrObstacleOrPowerup < 0.60)
         {
             enemyOrObstacleOrPowerup = 0;
-        } else
+        } else if (enemyOrObstacleOrPowerup > 0.60 && enemyOrObstacleOrPowerup < 0.85)
+        {
+            enemyOrObstacleOrPowerup = 1;
+        }
+        else
         {
             enemyOrObstacleOrPowerup = 2;
         }
