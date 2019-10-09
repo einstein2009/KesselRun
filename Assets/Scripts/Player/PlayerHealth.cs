@@ -42,6 +42,13 @@ public class PlayerHealth : MonoBehaviour
         currentShields = startingShields;
     }
 
+    void Start()
+    {
+        backgroundAudio.volume = 0.5f;
+        deathAudio.volume = 0.1f;
+        damageAudio.volume = 0.1f;
+    }
+
 
     void Update()
     {

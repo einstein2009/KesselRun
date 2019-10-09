@@ -26,6 +26,8 @@ public class Spawner : MonoBehaviour
     private int numOfPowerups;
     private float spawnCountdown;
 
+    private GameObject player;
+
 
     void Start()
     {
@@ -35,6 +37,8 @@ public class Spawner : MonoBehaviour
         numOfObstacles = obstacles.Length + 1;
         numOfPowerups = powerups.Length;
         Random.InitState(42);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -48,13 +52,16 @@ public class Spawner : MonoBehaviour
             spawnCountdown = spawnRate;
             //Get the next random enemy or obstacle: both type and asset are random.
             nextTransform = GetTransform();
+            //Debug.Log(nextTransform.position + " " + nextTransform.rotation);
             do
             {
                 nextSpawn = GetNextSpawn(enemies, obstacles, powerups);
             } while (nextSpawn == null);
             GameObject newSpawn = Instantiate(nextSpawn);
-            newSpawn.transform.localPosition = nextTransform.position;
-            newSpawn.transform.localRotation = nextTransform.rotation;
+            //newSpawn.transform.SetParent(nextTransform);
+            newSpawn.transform.position = nextTransform.position;
+            newSpawn.transform.Translate(0f, 0f, player.transform.position.z + 80);
+            newSpawn.transform.rotation = nextTransform.rotation;
 
         }
     }
@@ -67,10 +74,10 @@ public class Spawner : MonoBehaviour
 
         float enemyOrObstacleOrPowerup = Random.Range(0f, 1f);
 
-        if (enemyOrObstacleOrPowerup < 0.70)
+        if (enemyOrObstacleOrPowerup < 0.60)
         {
             enemyOrObstacleOrPowerup = 0;
-        } else if (enemyOrObstacleOrPowerup > 0.70 && enemyOrObstacleOrPowerup < 0.90)
+        } else if (enemyOrObstacleOrPowerup > 0.60 && enemyOrObstacleOrPowerup < 0.85)
         {
             enemyOrObstacleOrPowerup = 1;
         }
