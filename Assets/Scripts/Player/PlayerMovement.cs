@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //Keep Moving Forward
         //transform.position += Vector3.forward * Time.deltaTime * speed;
-        Debug.Log(falling.ToString());
         if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
@@ -78,19 +77,19 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Switch to the lane on the right
-        if (Input.GetKeyDown(KeyCode.D) && !movingTop && !movingRight && !movingLeft)
+        if(Input.GetAxis("Horizontal") > 0 && !movingTop && !movingRight && !movingLeft)
         {
             if (movingRight)
             {
                 currentLane = targetLane;
                 targetLane++;
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingLeft)
             {
                 currentLane = targetLane;
                 targetLane++;
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -113,24 +112,24 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = 3;
                         break;
                 }
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
 
         // Switch to the lane on the left
-        if (Input.GetKeyDown(KeyCode.A) && !movingTop && !movingRight && !movingLeft)
+        if (Input.GetAxis("Horizontal") < 0 && !movingTop && !movingRight && !movingLeft)
         {
             if (movingLeft)
             {
                 currentLane = targetLane;
                 targetLane--;
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else if (movingRight)
             {
                 currentLane = targetLane;
                 targetLane--;
-                Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
             }
             else
             {
@@ -153,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
                         targetLane = -3;
                         break;
                 }
-                Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
+                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
             }
         }
 
