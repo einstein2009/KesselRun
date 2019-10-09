@@ -6870,8 +6870,9 @@ MonoBehaviour:
   - {fileID: 1522620486}
   - {fileID: 903721461}
   - {fileID: 1027813961}
-  fireRate: 2
+  fireRate: 0.5
   shotSound: {fileID: 1124410368}
+  obstacleExplosion: {fileID: 19800012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
 --- !u!43 &637865438
 Mesh:
   m_ObjectHideFlags: 0
