@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
             spawnCountdown = spawnRate;
             //Get the next random enemy or obstacle: both type and asset are random.
             nextTransform = GetTransform();
-            Debug.Log(nextTransform.position + " " + nextTransform.rotation);
+            //Debug.Log(nextTransform.position + " " + nextTransform.rotation);
             do
             {
                 nextSpawn = GetNextSpawn(enemies, obstacles, powerups);
