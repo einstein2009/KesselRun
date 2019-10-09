@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool isImmune = false;
+
     public int startingHealth = 100;
     public int startingShields = 0;
     public int currentHealth;
@@ -30,8 +32,7 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;
     bool damaged;
     bool shieldOn;
-
-   
+    
 
     void Awake()
     {
@@ -71,6 +72,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isImmune)
+            return;
+
         damaged = true;
 
         damageAudio.Play();
