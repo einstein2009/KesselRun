@@ -17,6 +17,7 @@ public class PlayerShooting : MonoBehaviour
     Text weaponText;
 
     public AudioSource shotSound;
+    public ParticleSystem obstacleExplosion;
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class PlayerShooting : MonoBehaviour
     {
         bombReady = false;
         SetBombReadyText(false);
-        DestroyAllEnemies();
+        DestroyAllEnemiesAndObstacles();
         Debug.Log("Destroying Enemies");
     }
 
@@ -94,9 +95,10 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    public void DestroyAllEnemies()
+    public void DestroyAllEnemiesAndObstacles()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
         EnemyHealth hp;
         foreach (GameObject enemy in enemies)
         {
@@ -108,6 +110,11 @@ public class PlayerShooting : MonoBehaviour
             {
                 enemy.SetActive(false);
             }
+        }
+        foreach (GameObject obstacle in obstacles)
+        {
+            Instantiate(obstacleExplosion, obstacle.transform.position, Quaternion.identity);
+            Destroy(obstacle);
         }
     }
 
