@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
 
     //This is only public until we tie in the difficulty
-    public float spawnRate;
+    public float spawnRate = 0.54f;
     //public float difficulty;
     public GameObject[] enemies;
     public GameObject[] obstacles;
@@ -38,8 +38,15 @@ public class Spawner : MonoBehaviour
         numOfObstacles = obstacles.Length + 1;
         numOfPowerups = powerups.Length;
         Random.InitState(42);
-
         player = GameObject.FindGameObjectWithTag("Player");
+
+        InvokeRepeating("IncreaseSpawnRate", 5f, 30f);
+    }
+
+    void IncreaseSpawnRate()
+    {
+        if(spawnRate > 0.24f)
+            spawnRate -= 0.03f * player.GetComponent<PlayerMovement>().speedIncreaseCount;
     }
 
 

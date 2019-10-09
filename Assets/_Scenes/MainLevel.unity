@@ -6812,7 +6812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432a61938fb9c304dbdc10182f86d0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 30
   jumpSpeed: 8
   gravity: 20
   transformLerpSpeed: 15
@@ -6823,6 +6823,7 @@ MonoBehaviour:
   topRightTransform: {fileID: 1944040979}
   topTransform: {fileID: 2017457823}
   movementSound: {fileID: 1257872158}
+  speedIncreaseCount: 0
 --- !u!54 &634120903
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20783,7 +20784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b5a4e9e3cf10d47a315f968a4fab26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0.5
+  spawnRate: 0.54
   enemies:
   - {fileID: 2664397914477520091, guid: 3698c740f2a093d46af29a786c1a07af, type: 3}
   - {fileID: 2664397914477520091, guid: 355ff0c3171537045b37f449fe9af93f, type: 3}
@@ -21995,6 +21996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6285ceca8bb8422469d5798efbdf3be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isImmune: 0
   startingHealth: 100
   startingShields: 0
   currentHealth: 0
