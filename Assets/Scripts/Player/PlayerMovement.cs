@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 15.0f;
+    public float speed = 30.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource movementSound;
 
+    public int speedIncreaseCount = 0;
 
     private Vector3 moveDirection = Vector3.zero;
     //private CharacterController controller;
@@ -36,9 +37,15 @@ public class PlayerMovement : MonoBehaviour
     private Quaternion targetQuaternion = new Quaternion();
     
 
-    void Awake()
+    void Start()
     {
-        //controller = GetComponent<CharacterController>();
+        InvokeRepeating("IncreaseSpeed", 5f, 30f);
+    }
+
+    void IncreaseSpeed()
+    {
+        speed += 10f;
+        speedIncreaseCount++;
     }
 
     void Update()
@@ -55,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
             Camera.main.fieldOfView += 40 * Time.deltaTime;
         }
             
-
         //Jump
         /*if (isGrounded())
         {

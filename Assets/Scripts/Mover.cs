@@ -7,6 +7,23 @@ public class Mover : MonoBehaviour
 
     public float speed;
 
+    private GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Start()
+    {
+        InvokeRepeating("IncreaseSpeed", 5f, 30f);
+    }
+
+    void IncreaseSpeed()
+    {
+        speed += 0.5f * player.GetComponent<PlayerMovement>().speedIncreaseCount;
+    }
+
     void Update()
     {
         transform.position += transform.forward * speed;
