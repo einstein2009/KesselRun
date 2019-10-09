@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public GameObject explosion;
-    public GameObject enemyExplosion;
 
     public void Die()
     {

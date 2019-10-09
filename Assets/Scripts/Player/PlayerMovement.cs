@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //Keep Moving Forward
         //transform.position += Vector3.forward * Time.deltaTime * speed;
-        Debug.Log(falling.ToString());
         if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
