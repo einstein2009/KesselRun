@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
 
-    public float speed;
+    public float speed = 54f;
 
     private GameObject player;
 
@@ -16,17 +16,17 @@ public class Mover : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("IncreaseSpeed", 5f, 30f);
+        IncreaseSpeed();
     }
 
     void IncreaseSpeed()
     {
-        speed += 0.5f * player.GetComponent<PlayerMovement>().speedIncreaseCount;
+        speed += 18f * player.GetComponent<PlayerMovement>().speedIncreaseCount;
     }
 
     void Update()
     {
-        transform.position += transform.forward * speed;
+        transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
     }
 
     void OnTriggerEnter(Collider other)

@@ -6,6 +6,8 @@ using UnityEngine.Audio;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool isImmune = false;
+
     public int startingHealth = 100;
     public int startingShields = 0;
     public int currentHealth;
@@ -20,18 +22,20 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playerShield;
     public GameObject playerExplosion;
     public GameObject player;
+    public GameObject playerEngine;
 
     public AudioSource backgroundAudio;
     public AudioSource deathAudio;
     public AudioSource damageAudio;
+    public AudioSource shieldAudio;
+    public AudioSource healthAudio;
 
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
     bool isDead;
     bool damaged;
     bool shieldOn;
-
-   
+    
 
     void Awake()
     {
@@ -71,7 +75,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isImmune)
+            return;
+
         damaged = true;
+        int remainingDmg;
 
         damageAudio.Play();
 
@@ -80,8 +88,19 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentShields > 0)
         {
-            currentShields -= amount;
-            shieldSlider.value = currentShields;
+            if(amount > currentShields)
+            {
+                remainingDmg = amount - currentShields;
+                currentShields -= amount;
+                shieldSlider.value = currentShields;
+                currentHealth -= remainingDmg;
+                healthSlider.value = currentHealth;
+            }
+            else
+            {
+                currentShields -= amount;
+                shieldSlider.value = currentShields;
+            }
         }
         else if (currentShields <= 0 && currentHealth > 0)
         {
@@ -103,22 +122,24 @@ public class PlayerHealth : MonoBehaviour
             // Add Effect
             if (other.name.Contains("Heal"))
             {
+                healthAudio.Play();
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
                 if(currentHealth > 100)
                 {
                     currentHealth = 100;
                 }
-                Debug.Log("Healing 50");
+                //Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
+                shieldAudio.Play();
                 currentShields += 100;
                 shieldSlider.value = currentShields;
                 if(currentShields > 100)
                 {
                     currentShields = 100;
                 }
-                Debug.Log("Shield +100");
+                //Debug.Log("Shield +100");
                 if (shieldOn)
                     return;
                 TurnShieldOn();
@@ -145,6 +166,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
+        playerEngine.SetActive(false);
         deathAudio.Play();
         playerMovement.enabled = false;
         playerShooting.enabled = false;

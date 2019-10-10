@@ -44,8 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     void IncreaseSpeed()
     {
-        speed += 10f;
         speedIncreaseCount++;
+        if (speed < 70)
+            speed += 10f;
     }
 
     void Update()
