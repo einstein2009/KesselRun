@@ -35,10 +35,7 @@ public class PlayerHealth : MonoBehaviour
     bool isDead;
     bool damaged;
     bool shieldOn;
-
-    public GameObject ShieldGlow;
-    public GameObject HealthGlow;
-
+    
 
     void Awake()
     {
@@ -125,7 +122,6 @@ public class PlayerHealth : MonoBehaviour
             // Add Effect
             if (other.name.Contains("Heal"))
             {
-                ShieldGlow.GetComponent<Animation>().Play();
                 healthAudio.Play();
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
@@ -136,7 +132,6 @@ public class PlayerHealth : MonoBehaviour
                 //Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
-                ShieldGlow.GetComponent<Animation>().Play();
                 shieldAudio.Play();
                 currentShields += 100;
                 shieldSlider.value = currentShields;
