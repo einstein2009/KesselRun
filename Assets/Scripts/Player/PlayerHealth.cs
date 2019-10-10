@@ -77,6 +77,7 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         damaged = true;
+        int remainingDmg;
 
         damageAudio.Play();
 
@@ -85,8 +86,19 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentShields > 0)
         {
-            currentShields -= amount;
-            shieldSlider.value = currentShields;
+            if(amount > currentShields)
+            {
+                remainingDmg = amount - currentShields;
+                currentShields -= amount;
+                shieldSlider.value = currentShields;
+                currentHealth -= remainingDmg;
+                healthSlider.value = currentHealth;
+            }
+            else
+            {
+                currentShields -= amount;
+                shieldSlider.value = currentShields;
+            }
         }
         else if (currentShields <= 0 && currentHealth > 0)
         {
