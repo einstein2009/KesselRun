@@ -67,7 +67,6 @@ public class PlayerShooting : MonoBehaviour
             // Add Effect
             if (other.name.Contains("Rapidfire"))
             {
-                WeaponGlow.GetComponent<Animation>().Play();
                 rapidAudio.Play();
                 SetRapidfire();
                 GainRapidfire();
@@ -75,7 +74,6 @@ public class PlayerShooting : MonoBehaviour
             }
             else if (other.name.Contains("Megabomb"))
             {
-                BombGlow.GetComponent<Animation>().Play();
                 bombAudio.Play();
                 bombReady = true;
                 SetBombReadyText(true);
