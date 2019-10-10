@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
     public int attackDamage = 200;
+    public GameObject obstacleExplosion;
 
     GameObject player;
     PlayerHealth playerHealth;
@@ -21,6 +22,7 @@ public class ObstacleController : MonoBehaviour
     {
         if (other.gameObject == player)
         {
+            Instantiate(obstacleExplosion, transform.position, transform.rotation);
             Attack();
         }
     }
