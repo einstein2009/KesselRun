@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         numOfEnemies = enemies.Length + 1;
         numOfObstacles = obstacles.Length + 1;
         numOfPowerups = powerups.Length;
-        Random.InitState(42);
+        Random.InitState((int)System.DateTime.Now.Ticks);
         player = GameObject.FindGameObjectWithTag("Player");
 
         InvokeRepeating("IncreaseSpawnRate", 5f, 30f);

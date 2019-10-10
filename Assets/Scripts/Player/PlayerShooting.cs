@@ -64,13 +64,13 @@ public class PlayerShooting : MonoBehaviour
                 // Include a timer UI element
                 SetRapidfire();
                 GainRapidfire();
-                Debug.Log("Rapidfire On");
+                //Debug.Log("Rapidfire On");
             }
             else if (other.name.Contains("Megabomb"))
             {
                 bombReady = true;
                 SetBombReadyText(true);
-                Debug.Log("Bomb Ready");
+                //Debug.Log("Bomb Ready");
             }
         } 
     }

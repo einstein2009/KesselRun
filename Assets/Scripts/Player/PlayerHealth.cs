@@ -126,7 +126,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     currentHealth = 100;
                 }
-                Debug.Log("Healing 50");
+                //Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
                 currentShields += 100;
@@ -135,7 +135,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     currentShields = 100;
                 }
-                Debug.Log("Shield +100");
+                //Debug.Log("Shield +100");
                 if (shieldOn)
                     return;
                 TurnShieldOn();
