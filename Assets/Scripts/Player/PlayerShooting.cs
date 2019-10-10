@@ -19,9 +19,6 @@ public class PlayerShooting : MonoBehaviour
     public AudioSource shotSound;
     public ParticleSystem obstacleExplosion;
 
-    public GameObject WeaponGlow;
-    public GameObject BombGlow;
-
     void Start()
     {
         bombText = GameObject.Find("BombReadyText").GetComponent<Text>();
@@ -68,14 +65,12 @@ public class PlayerShooting : MonoBehaviour
                 SetRapidfire();
                 GainRapidfire();
                 //Debug.Log("Rapidfire On");
-                WeaponGlow.GetComponent<Animation>().Play();
             }
             else if (other.name.Contains("Megabomb"))
             {
                 bombReady = true;
                 SetBombReadyText(true);
                 //Debug.Log("Bomb Ready");
-                BombGlow.GetComponent<Animation>().Play();
             }
         } 
     }
