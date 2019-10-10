@@ -27,8 +27,6 @@ public class PlayerHealth : MonoBehaviour
     public AudioSource backgroundAudio;
     public AudioSource deathAudio;
     public AudioSource damageAudio;
-    public AudioSource shieldAudio;
-    public AudioSource healthAudio;
 
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
@@ -122,8 +120,6 @@ public class PlayerHealth : MonoBehaviour
             // Add Effect
             if (other.name.Contains("Heal"))
             {
-                healthAudio.Play();
-
                 currentHealth += 50;
                 healthSlider.value = currentHealth;
                 if(currentHealth > 100)
@@ -133,8 +129,6 @@ public class PlayerHealth : MonoBehaviour
                 //Debug.Log("Healing 50");
             } else if (other.name.Contains("Shield"))
             {
-                shieldAudio.Play();
-
                 currentShields += 100;
                 shieldSlider.value = currentShields;
                 if(currentShields > 100)
