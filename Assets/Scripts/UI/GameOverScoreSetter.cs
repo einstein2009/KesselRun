@@ -10,6 +10,8 @@ public class GameOverScoreSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+
         float temp = PlayerPrefs.GetFloat("Score");
 
         theScore.text = temp.ToString("F2") + " Light Years";
