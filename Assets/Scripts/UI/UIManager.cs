@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     //shows objects with ShowOnPause tag
     public void showPaused()
     {
+        Cursor.visible = true;
         foreach (GameObject g in pauseObjects)
         {
             g.SetActive(true);
@@ -71,6 +72,7 @@ public class UIManager : MonoBehaviour
     //hides objects with ShowOnPause tag
     public void hidePaused()
     {
+        Cursor.visible = false;
         foreach (GameObject g in pauseObjects)
         {
             g.SetActive(false);
