@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private bool movingLeft = false;
     private bool movingTop = false;
     private bool falling = false;
+    private float horizontalAxisValue;
 
     private int currentLane = 0; // Middle
     private int targetLane = 0;
@@ -63,9 +64,21 @@ public class PlayerMovement : MonoBehaviour
             Camera.main.fieldOfView += 40 * Time.deltaTime;
         }
 
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow) ||
-            Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
-            Input.ResetInputAxes();
+        
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+            horizontalAxisValue = Input.GetAxis("Horizontal");
+            Debug.Log("firstkeypress");
+        } else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            horizontalAxisValue = Input.GetAxis("Horizontal");
+            Debug.Log("keypressed");
+        } else
+        {
+            horizontalAxisValue = 0f;
+            Debug.Log("keyup");
         }
 
             
@@ -90,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Switch to the lane on the right
-        if((Input.GetAxis("Horizontal") > 0f && Input.GetAxis("Horizontal") < 0.5f) && !movingTop && !movingRight && !movingLeft)
+        if((horizontalAxisValue > 0f && horizontalAxisValue < 0.5f) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingRight)
             {
@@ -130,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Switch to the lane on the left
-        if ((Input.GetAxis("Horizontal") < 0f && Input.GetAxis("Horizontal") > -0.5f) && !movingTop && !movingRight && !movingLeft)
+        if ((horizontalAxisValue < 0f && horizontalAxisValue > -0.5f) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingLeft)
             {
