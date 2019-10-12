@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RandomRotater : MonoBehaviour
 {
-    public float rotspeed;
+    public float rotspeedx = 0;
+    public float rotspeedy = 0;
+    public float rotspeedz = 0;
 
 
     void Update()
     {
-        transform.Rotate(rotspeed, transform.rotation.y, transform.rotation.z);
+        transform.Rotate(rotspeedx * Time.deltaTime, rotspeedy * Time.deltaTime, rotspeedz * Time.deltaTime);
     }
 }
