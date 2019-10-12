@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour
     public Transform LeftSpawn;
     public Transform TopRightSpawn;
     public Transform TopLeftSpawn;
-
     private Transform nextTransform;
 
     private GameObject nextSpawn;
@@ -54,7 +53,6 @@ public class Spawner : MonoBehaviour
     {
         //TODO: include difficulty to change the spawn rate.
 
-        
         spawnCountdown -= Time.deltaTime;
         if (spawnCountdown < 0)
         {
@@ -99,22 +97,16 @@ public class Spawner : MonoBehaviour
         {
             int randEnemy = Random.Range(0, numOfEnemies - 1);
             nextSpawn = enemies[randEnemy];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         }
         else if ((enemyOrObstacleOrPowerup == 1 && obstacles.Length != 0))
         {
             int randObstacle = Random.Range(0, numOfObstacles - 1);
             nextSpawn = obstacles[randObstacle];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         }
         else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
         {
             int randPowerup = Random.Range(0, numOfPowerups - 1);
             nextSpawn = powerups[randPowerup];
-            //nextSpawn.transform.position = nextTransform.position;
-            //nextSpawn.transform.rotation = nextTransform.rotation;
         } else
         {
             nextSpawn = null;
@@ -138,6 +130,4 @@ public class Spawner : MonoBehaviour
             default: return MiddleSpawn;
         }
     }
-
-
 }
