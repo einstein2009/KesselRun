@@ -62,6 +62,12 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(Vector3.right + Vector3.forward, 35 * Time.deltaTime, Space.Self);
             Camera.main.fieldOfView += 40 * Time.deltaTime;
         }
+
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow) ||
+            Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
+            Input.ResetInputAxes();
+        }
+
             
         //Jump
         /*if (isGrounded())
@@ -84,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Switch to the lane on the right
-        if(Input.GetAxis("Horizontal") > 0 && !movingTop && !movingRight && !movingLeft)
+        if((Input.GetAxis("Horizontal") > 0f && Input.GetAxis("Horizontal") < 0.5f) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingRight)
             {
@@ -124,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Switch to the lane on the left
-        if (Input.GetAxis("Horizontal") < 0 && !movingTop && !movingRight && !movingLeft)
+        if ((Input.GetAxis("Horizontal") < 0f && Input.GetAxis("Horizontal") > -0.5f) && !movingTop && !movingRight && !movingLeft)
         {
             if (movingLeft)
             {
