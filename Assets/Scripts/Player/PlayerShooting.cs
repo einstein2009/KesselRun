@@ -29,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
     {
         bombText = GameObject.Find("BombReadyText").GetComponent<Text>();
         weaponText = GameObject.Find("WeaponReadyText").GetComponent<Text>();
-
+        Cursor.visible = false;
     }
 
     void Update()
