@@ -69,16 +69,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) ||
             Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
             horizontalAxisValue = Input.GetAxis("Horizontal");
-            Debug.Log("firstkeypress");
+            //Debug.Log("firstkeypress");
         } else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ||
             Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             horizontalAxisValue = Input.GetAxis("Horizontal");
-            Debug.Log("keypressed");
+            //Debug.Log("keypressed");
         } else
         {
             horizontalAxisValue = 0f;
-            Debug.Log("keyup");
+            //Debug.Log("keyup");
         }
 
             

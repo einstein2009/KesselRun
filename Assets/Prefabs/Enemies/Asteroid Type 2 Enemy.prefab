@@ -62,7 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb81e0c8549ca64e9a8832df17ffe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotspeed: 2
+  rotspeedx: 100
+  rotspeedy: 0
+  rotspeedz: 50
 --- !u!114 &1286058077379727547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
-  enemyExplosion: {fileID: 100012, guid: 384371afbb4354cc9a3fc68eab303756, type: 3}
 --- !u!1001 &6850571085925762469
 PrefabInstance:
   m_ObjectHideFlags: 0
