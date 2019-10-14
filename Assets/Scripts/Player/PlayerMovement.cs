@@ -30,7 +30,9 @@ public class PlayerMovement : MonoBehaviour
     private bool movingLeft = false;
     private bool movingTop = false;
     private bool falling = false;
+    private bool warping = false;
     private float horizontalAxisValue;
+    private float warpElapsed;
 
     private int currentLane = 0; // Middle
     private int targetLane = 0;
@@ -54,7 +56,11 @@ public class PlayerMovement : MonoBehaviour
     {
         //Keep Moving Forward
         //transform.position += Vector3.forward * Time.deltaTime * speed;
-        if (!falling)
+
+        if (warping)
+        {
+            TimeWarp();
+        } else if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         }
@@ -65,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            warping = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) ||
             Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
@@ -337,6 +348,34 @@ public class PlayerMovement : MonoBehaviour
     public void PlayMovementSound()
     {
         movementSound.Play();
+    }
+
+    void TimeWarp()
+    {
+        gameObject.GetComponent<PlayerHealth>().isImmune = true;
+        warpElapsed += Time.deltaTime;
+        if(warpElapsed < 1f) // first second
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * 10, Space.World); // 10x speed
+            Camera.main.fieldOfView += 150 * Time.deltaTime; // camera zoom out
+        } else // second second
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); // normal speed
+            if (Camera.main.fieldOfView > 60) 
+            {
+                Camera.main.fieldOfView -= 150 * Time.deltaTime; // zoom back in
+            } else
+            {
+                Camera.main.fieldOfView = 60; // normal cam view 60
+            }
+        }
+        if(warpElapsed > 2f)
+        {
+            warpElapsed = 0;
+            warping = false;
+            gameObject.GetComponent<PlayerHealth>().isImmune = false;
+        }
+        
     }
 
 }
