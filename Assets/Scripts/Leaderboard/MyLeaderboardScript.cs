@@ -18,6 +18,8 @@ public class MyLeaderboardScript : MonoBehaviour {
 
     int score = 0;
 
+    private bool used = false;
+
     // Reference to the dreamloLeaderboard prefab in the scene
     dreamloLeaderBoard dl;
 
@@ -49,8 +51,18 @@ public class MyLeaderboardScript : MonoBehaviour {
         //{
             addScoreBtnText.text = "(loading...)";
         //}
-
-        StartCoroutine(AddScoreRoutine());
+        if (used)
+        {
+            addScoreBtnText.text = "Saved";
+        }
+        else if (playerName.text != "")
+        {
+            StartCoroutine(AddScoreRoutine());
+        } else
+        {
+            addScoreBtnText.text = "Save";
+        }
+            
     }
 
     System.Collections.IEnumerator AddScoreRoutine()
@@ -58,10 +70,12 @@ public class MyLeaderboardScript : MonoBehaviour {
         dl.AddScore(playerName.text, score);
         //yield return new WaitForSeconds(2.1f);
         //dl.LoadScores();
+        used = true;
         yield return new WaitForSeconds(1.1f);
         scoreList = dl.ToListHighToLow();
         yield return new WaitForSeconds(1.1f);
         DisplayScores();
+        addScoreBtnText.text = "Saved";
     }
 
     void DisplayScores()
