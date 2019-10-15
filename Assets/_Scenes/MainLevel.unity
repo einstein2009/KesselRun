@@ -1717,7 +1717,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.03125, y: 0.048828125, z: 0.0234375, w: -0.013671875}
+  m_BoundingSphereOverride: {x: 6.15e-43, y: 6.32e-43, z: 0, w: -1.9791007e-30}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -10197,7 +10197,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.03125, y: 0.048828125, z: 0.0234375, w: -0.013671875}
+  m_BoundingSphereOverride: {x: 0, y: 1e-44, z: 5.738e-42, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -14513,11 +14513,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
-        type: 3}
-      propertyPath: m_CullingMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7556403888065917356, guid: 929700c3030b65542acce8118a5c8e94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14542,6 +14537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556403886127882422, guid: 929700c3030b65542acce8118a5c8e94,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 929700c3030b65542acce8118a5c8e94, type: 3}
@@ -23861,7 +23861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6285ceca8bb8422469d5798efbdf3be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isImmune: 0
+  isImmune: 1
   startingHealth: 100
   startingShields: 0
   currentHealth: 0

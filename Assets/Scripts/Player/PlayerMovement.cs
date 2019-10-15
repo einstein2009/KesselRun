@@ -9,23 +9,17 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 30.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
-
     public float transformLerpSpeed = 10.0f;
-
     public Transform topLeftTransform;
     public Transform leftTransform;
     public Transform middleTransform;
     public Transform rightTransform;
     public Transform topRightTransform;
     public Transform topTransform;
-
     public AudioSource movementSound;
-
     public int speedIncreaseCount = 0;
 
     private Vector3 moveDirection = Vector3.zero;
-    //private CharacterController controller;
-
     private bool movingRight = false;
     private bool movingLeft = false;
     private bool movingTop = false;
@@ -33,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private bool warping = false;
     private float horizontalAxisValue;
     private float warpElapsed;
-
     private int currentLane = 0; // Middle
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
@@ -55,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        // AUTOMATIC MOVING BEHAVIOR
+
         if (warping)
         {
             TimeWarp();
@@ -68,12 +63,12 @@ public class PlayerMovement : MonoBehaviour
             Camera.main.fieldOfView += 40 * Time.deltaTime;
         }
 
-        
-
         /*if (Input.GetKeyDown(KeyCode.R))
         {
             warping = true;
         }*/
+
+        // INPUT BEHAVIOR
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.LeftArrow) ||
             Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
@@ -110,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.Translate(moveDirection * Time.deltaTime);*/
 
+        // SWAPING LANE BEHAVIOR
 
         // Switch to the lane on the right
         if((horizontalAxisValue > 0f && horizontalAxisValue < 0.5f) && !movingTop && !movingRight && !movingLeft)
@@ -212,6 +208,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // END GAME BEHAVIOR
+
     private void MoveTop()
     {
         movingTop = true;
@@ -237,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().currentHealth = 0;
     }
 
-    private bool isGrounded()
+    /*private bool isGrounded()
     {
         RaycastHit hit;
         float distance = 1f;
@@ -252,7 +250,9 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
-    }
+    }*/
+
+    // MOVING RIGHT/LEFT BEHAVIOR
 
     private void MoveRight()
     {
@@ -330,6 +330,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // EXTRA BEHAVIOR
+
     void OnTriggerExit(Collider other)
     {
         //Debug.Log("Exiting " + other.gameObject.name);
@@ -341,7 +343,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
 
     public void PlayMovementSound()
     {
