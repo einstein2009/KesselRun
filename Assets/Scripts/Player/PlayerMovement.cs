@@ -54,15 +54,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Keep Moving Forward
-        //transform.position += Vector3.forward * Time.deltaTime * speed;
 
         if (warping)
         {
             TimeWarp();
         } else if (!falling)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); //Keep Moving Forward
         }
         else{
             transform.Translate(Vector3.up * Time.deltaTime * 12f + Vector3.forward * Time.deltaTime * speed, Space.World);
@@ -72,16 +70,16 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             warping = true;
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) ||
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.LeftArrow) ||
             Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
             horizontalAxisValue = Input.GetAxis("Horizontal");
             //Debug.Log("firstkeypress");
-        } else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ||
+        } else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow) ||
             Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             horizontalAxisValue = Input.GetAxis("Horizontal");
