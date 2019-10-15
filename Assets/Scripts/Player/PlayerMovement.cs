@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private int targetLane = 0;
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
+    private int lane = 0;
     
 
     void Start()
@@ -85,127 +86,74 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("keyup");
         }
 
-            
-        //Jump
-        /*if (isGrounded())
+        // NEW LANE SWAP BEHAVIOR
+
+        if (!movingTop)
         {
-            if (Input.GetButton("Jump"))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                moveDirection.y = jumpSpeed;
+                lane--;
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                moveDirection.y = 0.0f;
+                lane++;
             }
+        }
+
+        switch (lane)
+        {
+            case -2:
+                targetVector3 = new Vector3(topLeftTransform.position.x, topLeftTransform.position.y, transform.position.z);
+                targetQuaternion = topLeftTransform.rotation;
+                PlayMovementSound();
+                break;
+            case -1:
+                targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
+                targetQuaternion = leftTransform.rotation;
+                PlayMovementSound();
+                break;
+            case 0:
+                targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
+                targetQuaternion = middleTransform.rotation;
+                PlayMovementSound();
+                break;
+            case 1:
+                targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
+                targetQuaternion = rightTransform.rotation;
+                PlayMovementSound();
+                break;
+            case 2:
+                targetVector3 = new Vector3(topRightTransform.position.x, topRightTransform.position.y, transform.position.z);
+                targetQuaternion = topRightTransform.rotation;
+                PlayMovementSound();
+                break;
+            default:
+                targetVector3 = new Vector3(topTransform.position.x, topRightTransform.position.y, transform.position.z);
+                targetQuaternion = topRightTransform.rotation;
+                PlayMovementSound();
+                break;
+        }
+
+        if (lane < -2 || lane > 2)
+        {
+            if (!falling)
+                MoveTop();
+
+            if (!IsInvoking("GameOver"))
+                Invoke("GameOver", 3);
         }
         else
         {
-            // Apply gravity
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
-        transform.Translate(moveDirection * Time.deltaTime);*/
-
-        // SWAPING LANE BEHAVIOR
-
-        // Switch to the lane on the right
-        if((horizontalAxisValue > 0f && horizontalAxisValue < 0.5f) && !movingTop && !movingRight && !movingLeft)
-        {
-            if (movingRight)
-            {
-                currentLane = targetLane;
-                targetLane++;
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
-            else if (movingLeft)
-            {
-                currentLane = targetLane;
-                targetLane++;
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
-            else
-            {
-                movingRight = true;
-                switch (currentLane)
-                {
-                    case -2:
-                        targetLane = -1;
-                        break;
-                    case -1:
-                        targetLane = 0;
-                        break;
-                    case 0:
-                        targetLane = 1;
-                        break;
-                    case 1:
-                        targetLane = 2;
-                        break;
-                    default:
-                        targetLane = 3;
-                        break;
-                }
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
+            MoveToLane();
         }
 
-        // Switch to the lane on the left
-        if ((horizontalAxisValue < 0f && horizontalAxisValue > -0.5f) && !movingTop && !movingRight && !movingLeft)
-        {
-            if (movingLeft)
-            {
-                currentLane = targetLane;
-                targetLane--;
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
-            else if (movingRight)
-            {
-                currentLane = targetLane;
-                targetLane--;
-                //Debug.Log("Moving Right from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
-            else
-            {
-                movingLeft = true;
-                switch (currentLane)
-                {
-                    case -1:
-                        targetLane = -2;
-                        break;
-                    case 0:
-                        targetLane = -1;
-                        break;
-                    case 1:
-                        targetLane = 0;
-                        break;
-                    case 2:
-                        targetLane = 1;
-                        break;
-                    default:
-                        targetLane = -3;
-                        break;
-                }
-                //Debug.Log("Moving Left from current lane: " + currentLane + " to target lane: " + targetLane);
-            }
-        }
 
-        if ((targetLane > 2 || targetLane < -2))
-        {
-            if(!falling)
-                MoveTop();
-            
-            if(!IsInvoking("GameOver"))
-            Invoke("GameOver", 3);
-        } else
-        {
-            if (movingRight)
-            {
-                MoveRight();
-            }
-            else if (movingLeft)
-            {
-                MoveLeft();
-            }
-        }
+    }
 
+    void MoveToLane()
+    {
+        transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
     }
 
     // END GAME BEHAVIOR
@@ -226,7 +174,6 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
-
 
     }
 
@@ -251,84 +198,6 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }*/
-
-    // MOVING RIGHT/LEFT BEHAVIOR
-
-    private void MoveRight()
-    {
-        switch (targetLane)
-        {
-            case -1:
-                targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
-                targetQuaternion = leftTransform.rotation;
-                PlayMovementSound();
-                break;
-            case 0:
-                targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
-                targetQuaternion = middleTransform.rotation;
-                PlayMovementSound();
-                break;
-            case 1:
-                targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
-                targetQuaternion = rightTransform.rotation;
-                PlayMovementSound();
-                break;
-            case 2:
-                targetVector3 = new Vector3(topRightTransform.position.x, topRightTransform.position.y, transform.position.z);
-                targetQuaternion = topRightTransform.rotation;
-                PlayMovementSound();
-                break;
-            default:
-                break;
-        }
-
-        transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
-
-        if (Vector3.Distance(transform.position, targetVector3) < 0.01)
-        {
-            movingRight = false;
-            currentLane = targetLane;
-        }
-    }
-
-    private void MoveLeft()
-    {
-        switch (targetLane)
-        {
-            case -2:
-                targetVector3 = new Vector3(topLeftTransform.position.x, topLeftTransform.position.y, transform.position.z);
-                targetQuaternion = topLeftTransform.rotation;
-                PlayMovementSound();
-                break;
-            case -1:
-                targetVector3 = new Vector3(leftTransform.position.x, leftTransform.position.y, transform.position.z);
-                targetQuaternion = leftTransform.rotation;
-                PlayMovementSound();
-                break;
-            case 0:
-                targetVector3 = new Vector3(middleTransform.position.x, middleTransform.position.y, transform.position.z);
-                targetQuaternion = middleTransform.rotation;
-                PlayMovementSound();
-                break;
-            case 1:
-                targetVector3 = new Vector3(rightTransform.position.x, rightTransform.position.y, transform.position.z);
-                targetQuaternion = rightTransform.rotation;
-                PlayMovementSound();
-                break;
-            default:
-                break;
-        }
-
-        transform.position = Vector3.Lerp(transform.position, targetVector3, Time.deltaTime * transformLerpSpeed);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * transformLerpSpeed);
-
-        if (Vector3.Distance(transform.position, targetVector3) < 0.01)
-        {
-            movingLeft = false;
-            currentLane = targetLane;
-        }
-    }
 
     // EXTRA BEHAVIOR
 
