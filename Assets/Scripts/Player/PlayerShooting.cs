@@ -55,7 +55,7 @@ public class PlayerShooting : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.B) && bombReady || Input.GetButton("Fire2") && bombReady)
         if(Input.GetButton("Fire2") && bombReady)
         {
-            TriggerMegabombDestruction();
+            TriggerMegabombDestruction();           
         }
     }
 
@@ -90,6 +90,7 @@ public class PlayerShooting : MonoBehaviour
         SetBombReadyText(false);
         DestroyAllEnemiesAndObstacles();
         Debug.Log("Destroying Enemies");
+        
     }
 
     void SetBombReadyText(bool ready)
