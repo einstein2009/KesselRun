@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform topTransform;
     public AudioSource movementSound;
     public int speedIncreaseCount = 0;
+    GameObject camera;
+    SkyboxChange skyboxChange;
 
     private Vector3 moveDirection = Vector3.zero;
     private bool movingRight = false;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool movingTop = false;
     private bool falling = false;
     private bool warping = false;
+    private bool skyboxChanged = false;
     private float horizontalAxisValue;
     private float warpElapsed;
     private int currentLane = 0; // Middle
@@ -32,15 +35,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 targetVector3 = new Vector3();
     private Quaternion targetQuaternion = new Quaternion();
     private int lane = 0;
-    
 
     void Start()
     {
         InvokeRepeating("IncreaseSpeed", 5f, 30f);
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        skyboxChange = camera.GetComponent<SkyboxChange>();
     }
 
     void IncreaseSpeed()
     {
+        warping = true;
         speedIncreaseCount++;
         if (speed < 70)
             speed += 10f;
@@ -48,17 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         // AUTOMATIC MOVING BEHAVIOR
 
         if (warping)
         {
             TimeWarp();
-        } else if (!falling)
+        }
+        else if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); //Keep Moving Forward
         }
-        else{
+        else
+        {
             transform.Translate(Vector3.up * Time.deltaTime * 12f + Vector3.forward * Time.deltaTime * speed, Space.World);
             transform.Rotate(Vector3.right + Vector3.forward, 35 * Time.deltaTime, Space.Self);
             Camera.main.fieldOfView += 40 * Time.deltaTime;
@@ -72,15 +78,18 @@ public class PlayerMovement : MonoBehaviour
         // INPUT BEHAVIOR
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.LeftArrow) ||
-            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
             horizontalAxisValue = Input.GetAxis("Horizontal");
             //Debug.Log("firstkeypress");
-        } else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow) ||
-            Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow) ||
+          Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             horizontalAxisValue = Input.GetAxis("Horizontal");
             //Debug.Log("keypressed");
-        } else
+        }
+        else
         {
             horizontalAxisValue = 0f;
             //Debug.Log("keyup");
@@ -207,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Pipe"))
         {
             EndlessPipes localScript = other.gameObject.GetComponent<EndlessPipes>();
-            if(localScript != null)
+            if (localScript != null)
                 localScript.MoveToFront();
         }
 
@@ -222,28 +231,37 @@ public class PlayerMovement : MonoBehaviour
     {
         gameObject.GetComponent<PlayerHealth>().isImmune = true;
         warpElapsed += Time.deltaTime;
-        if(warpElapsed < 1f) // first second
+
+        if (warpElapsed < 1f) // first second
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 10, Space.World); // 10x speed
             Camera.main.fieldOfView += 150 * Time.deltaTime; // camera zoom out
-        } else // second second
+
+        }
+        else // second second
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); // normal speed
-            if (Camera.main.fieldOfView > 60) 
+            if (Camera.main.fieldOfView > 60)
             {
                 Camera.main.fieldOfView -= 150 * Time.deltaTime; // zoom back in
-            } else
+            }
+            else
             {
                 Camera.main.fieldOfView = 60; // normal cam view 60
             }
+            if(skyboxChanged == false)
+            {
+                skyboxChange.ChangeMySkybox();
+                skyboxChanged = true;
+            }
         }
-        if(warpElapsed > 2f)
+        if (warpElapsed > 2f)
         {
             warpElapsed = 0;
             warping = false;
+            skyboxChanged = false;
             gameObject.GetComponent<PlayerHealth>().isImmune = false;
         }
-        
-    }
 
+    }
 }

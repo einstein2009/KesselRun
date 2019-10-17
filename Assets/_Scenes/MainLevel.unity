@@ -13590,6 +13590,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 929700c3030b65542acce8118a5c8e94, type: 3}
+--- !u!1 &1250083094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2865579577046854500, guid: d193ae8853078a744bed5d3421d20471,
+    type: 3}
+  m_PrefabInstance: {fileID: 2865579576596332842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250083096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250083094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293c930cabd787545932a986bbd2f81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxes:
+  - {fileID: 2100000, guid: b6a3f8bca2c865243929bac258c89b96, type: 2}
+  - {fileID: 2100000, guid: 2d59d810ba900874295015e507e19f2e, type: 2}
+  - {fileID: 2100000, guid: 939e9a2214e37ec4e8eb4fe85d074704, type: 2}
+  - {fileID: 2100000, guid: a4f78a684965a2d4bbc20a4b86231606, type: 2}
+  - {fileID: 2100000, guid: e0e0125b5148ca84fb8a0ee339d80ee1, type: 2}
+  - {fileID: 2100000, guid: 24e7e96dae0b1714990e8bf42957cd40, type: 2}
+  - {fileID: 2100000, guid: e980bc7fbb00dc34b86b95ac842d1920, type: 2}
+  - {fileID: 2100000, guid: b8f20d5ca50d16143afc11f5e4af6fc1, type: 2}
+  - {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
+  - {fileID: 2100000, guid: 5b21c6a8ce40f9641bd1204324b90b2c, type: 2}
+  - {fileID: 2100000, guid: 966766f4829d6ad419eaaf7cf0712f85, type: 2}
+  - {fileID: 2100000, guid: 19e2485c6f92d6944ad20466ac77b04c, type: 2}
+  - {fileID: 2100000, guid: b9be0c15efe8ad9489fdeead114d8ec5, type: 2}
+  - {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  timer: 0
 --- !u!43 &1250797982
 Mesh:
   m_ObjectHideFlags: 0
@@ -22335,6 +22369,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1332423334}
+    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: shieldSlider
+      value: 
+      objectReference: {fileID: 285208176}
+    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: damageImage
+      value: 
+      objectReference: {fileID: 1329815830}
+    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: ShieldGlow
+      value: 
+      objectReference: {fileID: 286490200}
+    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: HealthGlow
+      value: 
+      objectReference: {fileID: 1800088229}
     - target: {fileID: 2867181569504990904, guid: d193ae8853078a744bed5d3421d20471,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22420,6 +22479,11 @@ PrefabInstance:
       propertyPath: topTransform
       value: 
       objectReference: {fileID: 2017457823}
+    - target: {fileID: 2865579577213217772, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: skybox
+      value: 
+      objectReference: {fileID: 1250083094}
     - target: {fileID: 2865579577213217761, guid: d193ae8853078a744bed5d3421d20471,
         type: 3}
       propertyPath: WeaponGlow
@@ -22430,31 +22494,6 @@ PrefabInstance:
       propertyPath: BombGlow
       value: 
       objectReference: {fileID: 1164473852}
-    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
-        type: 3}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 1332423334}
-    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
-        type: 3}
-      propertyPath: shieldSlider
-      value: 
-      objectReference: {fileID: 285208176}
-    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
-        type: 3}
-      propertyPath: damageImage
-      value: 
-      objectReference: {fileID: 1329815830}
-    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
-        type: 3}
-      propertyPath: ShieldGlow
-      value: 
-      objectReference: {fileID: 286490200}
-    - target: {fileID: 2865057920747600947, guid: d193ae8853078a744bed5d3421d20471,
-        type: 3}
-      propertyPath: HealthGlow
-      value: 
-      objectReference: {fileID: 1800088229}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d193ae8853078a744bed5d3421d20471, type: 3}
 --- !u!1001 &4945074907400127918
