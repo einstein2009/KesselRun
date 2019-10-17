@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
         {
             Attack();
             hasdonedamage = true;
-            this.gameObject.GetComponent<EnemyHealth>().Die();
+            this.gameObject.GetComponent<EnemyHealth>().Die(false);
         }
     }
 

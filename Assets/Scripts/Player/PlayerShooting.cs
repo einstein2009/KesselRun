@@ -19,6 +19,8 @@ public class PlayerShooting : MonoBehaviour
     public AudioSource shotSound;
     public ParticleSystem obstacleExplosion;
 
+    public AudioSource[] audioToBeLoweredByBomb;
+    public AudioSource bombAftermanAudio;
     public AudioSource bombAudio;
     public AudioSource rapidAudio;
 
@@ -38,15 +40,6 @@ public class PlayerShooting : MonoBehaviour
         {
 
             nextFire = Time.time + fireRate;
-            /*if (rapidfire)
-            {
-                Instantiate(shot, shotSpawns[0].position, shotSpawns[0].rotation);
-                Instantiate(shot, shotSpawns[1].position, shotSpawns[1].rotation);
-                Instantiate(shot, shotSpawns[2].position, shotSpawns[2].rotation);
-            } else
-            {
-                Instantiate(shot, shotSpawns[0].position, shotSpawns[0].rotation);
-            }*/
             Instantiate(shot, shotSpawns[0].position, shotSpawns[0].rotation);
             Instantiate(shot, shotSpawns[1].position, shotSpawns[1].rotation);
             Instantiate(shot, shotSpawns[2].position, shotSpawns[2].rotation);
@@ -86,11 +79,56 @@ public class PlayerShooting : MonoBehaviour
 
     void TriggerMegabombDestruction()
     {
+        bombAftermanAudio.Play();
+        LowerAudioSources();
+        Invoke("ResetAudioSources", 4);
         bombReady = false;
         SetBombReadyText(false);
-        DestroyAllEnemiesAndObstacles();
+        InvokeRepeating("DestroyAllEnemiesAndObstacles", 0, 0.2f);
+        //DestroyAllEnemiesAndObstacles();
         Debug.Log("Destroying Enemies");
-        
+    }
+
+    void LowerAudioSources()
+    {
+        foreach(AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume /= 10f;
+        }
+    }
+
+    void ResetAudioSources()
+    {
+        CancelInvoke("DestroyAllEnemiesAndObstacles");
+        /*foreach (AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume *= 10f;
+        }*/
+        StartCoroutine(GraduallyResetVolume());
+    }
+    
+    IEnumerator GraduallyResetVolume()
+    {
+        foreach (AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume *= 2f;
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume *= 2f;
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume *= 2f;
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (AudioSource audio in audioToBeLoweredByBomb)
+        {
+            audio.volume *= 1.25f;
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 
     void SetBombReadyText(bool ready)
@@ -114,17 +152,15 @@ public class PlayerShooting : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             hp = enemy.GetComponent<EnemyHealth>();
-            if(hp != null)
-            {
-                hp.Die();
-            } else
-            {
+            if (hp != null)
+                hp.Die(true);
+            else
                 enemy.SetActive(false);
-            }
         }
         foreach (GameObject obstacle in obstacles)
         {
-            Instantiate(obstacleExplosion, obstacle.transform.position, Quaternion.identity);
+            ParticleSystem explosionEffect = Instantiate(obstacleExplosion, obstacle.transform.position, Quaternion.identity);
+            explosionEffect.GetComponent<AudioSource>().volume = 0.1f;
             Destroy(obstacle);
         }
     }
