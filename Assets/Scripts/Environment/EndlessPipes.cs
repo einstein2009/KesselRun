@@ -5,13 +5,16 @@ using UnityEngine;
 public class EndlessPipes : MonoBehaviour
 {
     private GameObject[] pipes;
+    private GameObject player;
+    public float zTranslation = 100f;
 
     void Awake()
     {
         pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void MoveToFront()
+    /*public void MoveToFront()
     {
         Vector3 furthestPosition = transform.position;
         foreach(GameObject pipe in pipes)
@@ -24,9 +27,22 @@ public class EndlessPipes : MonoBehaviour
 
         furthestPosition.z += 10;
         this.transform.SetPositionAndRotation(furthestPosition, transform.rotation);
+    }*/
+
+    void Update()
+    {
+        if(transform.position.z - player.transform.position.z < -30)
+        {
+            MoveToFront();
+        }
     }
 
-    
+    public void MoveToFront()
+    {
+        transform.Translate(Vector3.forward * zTranslation, Space.World);
+    }
+
+
 
 
 

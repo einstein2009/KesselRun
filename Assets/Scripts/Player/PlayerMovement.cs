@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
 
     // EXTRA BEHAVIOR
 
-    void OnTriggerExit(Collider other)
+    /*void OnTriggerExit(Collider other)
     {
         //Debug.Log("Exiting " + other.gameObject.name);
         if (other.gameObject.CompareTag("Pipe"))
@@ -215,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
                 localScript.MoveToFront();
         }
 
-    }
+    }*/
 
     public void PlayMovementSound()
     {

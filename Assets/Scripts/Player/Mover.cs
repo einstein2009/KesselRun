@@ -36,7 +36,7 @@ public class Mover : MonoBehaviour
             EnemyHealth hp = other.gameObject.GetComponent<EnemyHealth>();
             if (hp != null)
             {
-                hp.Die();
+                hp.Die(false);
             } else
             {
                 Destroy(other.gameObject);
