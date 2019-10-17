@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.22534591, g: 0.14747635, b: 0.24579066, a: 1}
+  m_IndirectSpecularColor: {r: 0.15879354, g: 0.101027764, b: 0.17755923, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13623,7 +13623,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 19e2485c6f92d6944ad20466ac77b04c, type: 2}
   - {fileID: 2100000, guid: b9be0c15efe8ad9489fdeead114d8ec5, type: 2}
   - {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
-  timer: 0
+  speedMultiplier: 10
 --- !u!43 &1250797982
 Mesh:
   m_ObjectHideFlags: 0
@@ -22494,6 +22494,16 @@ PrefabInstance:
       propertyPath: BombGlow
       value: 
       objectReference: {fileID: 1164473852}
+    - target: {fileID: 2865579576014456467, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865579576014456467, guid: d193ae8853078a744bed5d3421d20471,
+        type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d193ae8853078a744bed5d3421d20471, type: 3}
 --- !u!1001 &4945074907400127918
