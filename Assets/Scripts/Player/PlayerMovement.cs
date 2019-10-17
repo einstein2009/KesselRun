@@ -18,12 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform topTransform;
     public AudioSource movementSound;
     public int speedIncreaseCount = 0;
+    public GameObject pipesParent;
+
     GameObject camera;
     SkyboxChange skyboxChange;
-
     private Vector3 moveDirection = Vector3.zero;
-    private bool movingRight = false;
-    private bool movingLeft = false;
     private bool movingTop = false;
     private bool falling = false;
     private bool warping = false;
@@ -48,32 +47,28 @@ public class PlayerMovement : MonoBehaviour
         warping = true;
         speedIncreaseCount++;
         if (speed < 70)
+        {
             speed += 10f;
+        }
     }
 
     void Update()
     {
         // AUTOMATIC MOVING BEHAVIOR
-
-        if (warping)
-        {
-            TimeWarp();
-        }
-        else if (!falling)
+        if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); //Keep Moving Forward
-        }
-        else
+        } else
         {
             transform.Translate(Vector3.up * Time.deltaTime * 12f + Vector3.forward * Time.deltaTime * speed, Space.World);
             transform.Rotate(Vector3.right + Vector3.forward, 35 * Time.deltaTime, Space.Self);
             Camera.main.fieldOfView += 40 * Time.deltaTime;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.R))
+        if (warping)
         {
-            warping = true;
-        }*/
+            TimeWarp();
+        }
 
         // INPUT BEHAVIOR
 
@@ -216,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Pipe"))
         {
             EndlessPipes localScript = other.gameObject.GetComponent<EndlessPipes>();
-            if (localScript != null)
+            if (localScript != null) ;
                 localScript.MoveToFront();
         }
 
@@ -234,13 +229,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (warpElapsed < 1f) // first second
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed * 10, Space.World); // 10x speed
             Camera.main.fieldOfView += 150 * Time.deltaTime; // camera zoom out
-
         }
         else // second second
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); // normal speed
             if (Camera.main.fieldOfView > 60)
             {
                 Camera.main.fieldOfView -= 150 * Time.deltaTime; // zoom back in
