@@ -10,10 +10,10 @@ public class EnemyHealth : MonoBehaviour
     public void Die(bool lowVolume)
     {
         ParticleSystem explosionEffect = Instantiate(explosion.GetComponent<ParticleSystem>(), transform.position, transform.rotation);
-        if (true)
+        if (lowVolume)
         {
             explosionEffect.GetComponent<AudioSource>().volume = 0.1f;
-        }
+        } 
         gameObject.SetActive(false);
     }
 }
