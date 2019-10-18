@@ -105,7 +105,8 @@ public class Spawner : MonoBehaviour
         }
         else if ((enemyOrObstacleOrPowerup == 2 && powerups.Length != 0))
         {
-            int randPowerup = Random.Range(0, numOfPowerups - 1);
+            //int randPowerup = Random.Range(0, numOfPowerups - 1);
+            int randPowerup = 2;
             nextSpawn = powerups[randPowerup];
         } else
         {
