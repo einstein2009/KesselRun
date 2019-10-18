@@ -71,11 +71,16 @@ public class MyLeaderboardScript : MonoBehaviour {
         //yield return new WaitForSeconds(2.1f);
         //dl.LoadScores();
         used = true;
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(2.1f);
         scoreList = dl.ToListHighToLow();
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(2.1f);
         DisplayScores();
         addScoreBtnText.text = "Saved";
+        yield return new WaitForSeconds(2.1f);
+        scoreList = dl.ToListHighToLow();
+        yield return new WaitForSeconds(2.1f);
+        DisplayScores();
+        
     }
 
     void DisplayScores()

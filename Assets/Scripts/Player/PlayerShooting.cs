@@ -84,7 +84,7 @@ public class PlayerShooting : MonoBehaviour
         Invoke("ResetAudioSources", 4);
         bombReady = false;
         SetBombReadyText(false);
-        InvokeRepeating("DestroyAllEnemiesAndObstacles", 0, 0.2f);
+        InvokeRepeating("DestroyAllEnemiesAndObstacles", 0, 0.1f);
         //DestroyAllEnemiesAndObstacles();
         Debug.Log("Destroying Enemies");
     }
