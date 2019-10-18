@@ -53,6 +53,18 @@ public class PlayerShooting : MonoBehaviour
             TriggerMegabombDestruction();
             Invoke("ResetBombBeingUsed", 7);
         }
+
+        if (bombBeingUsed)
+        {
+            bombText.text = "OVERHEAT";
+            bombText.color = Color.yellow;
+        } else if (bombReady)
+        {
+            SetBombReadyText(true);
+        } else
+        {
+            SetBombReadyText(false);
+        }
     }
 
     void ResetBombBeingUsed()
@@ -79,13 +91,6 @@ public class PlayerShooting : MonoBehaviour
                 BombGlow.GetComponent<Animation>().Play();
                 bombAudio.Play();
                 bombReady = true;
-                if (bombBeingUsed)
-                {
-                    GainBomb();
-                } else
-                {
-                    SetBombReadyText(true);
-                }
                 //Debug.Log("Bomb Ready");
             }
         } 
@@ -195,51 +200,6 @@ public class PlayerShooting : MonoBehaviour
             Invoke("RemoveRapidfire", 4);
         }
         
-    }
-
-    // BOMB TEXT BEHAVIOR
-
-    private Coroutine bombCoroutine;
-    private bool RUNNING;
-
-    public void GainBomb()
-    {
-        if (IsInvoking("clearBombText"))
-        {
-            CancelInvoke("clearBombText");
-        }
-        bombText.text = "READY (7)";
-        bombText.color = Color.green;
-
-        if (CR_RUNNING)
-        {
-            //StopCoroutine(bombCoroutine);
-            return;
-        }
-        bombCoroutine = StartCoroutine(BombCoroutine());
-
-    }
-
-    IEnumerator BombCoroutine()
-    {
-        RUNNING = true;
-        yield return new WaitForSeconds(1);
-        for (int i = 6; i > 0; i--)
-        {
-            if (IsInvoking("clearBombText"))
-            {
-                CancelInvoke("clearBombText");
-            }
-            bombText.text = "READY (" + i + ")";
-            yield return new WaitForSeconds(1);
-        }
-        clearBombText();
-        RUNNING = false;
-    }
-
-    void clearBombText()
-    {
-        SetBombReadyText(true);
     }
 
     // RAPIDFIRE TEXT BEHAVIOR
