@@ -12,6 +12,7 @@ public class PlayerShooting : MonoBehaviour
     private float nextFire;
     private bool rapidfire;
     private bool bombReady;
+    private bool bombBeingUsed;
 
     Text bombText;
     Text weaponText;
@@ -46,10 +47,17 @@ public class PlayerShooting : MonoBehaviour
             shotSound.Play();
         }
         //if (Input.GetKeyDown(KeyCode.B) && bombReady || Input.GetButton("Fire2") && bombReady)
-        if(Input.GetButton("Fire2") && bombReady)
+        if(Input.GetButton("Fire2") && bombReady && !bombBeingUsed)
         {
-            TriggerMegabombDestruction();           
+            bombBeingUsed = true;
+            TriggerMegabombDestruction();
+            Invoke("ResetBombBeingUsed", 7);
         }
+    }
+
+    void ResetBombBeingUsed()
+    {
+        bombBeingUsed = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -71,7 +79,13 @@ public class PlayerShooting : MonoBehaviour
                 BombGlow.GetComponent<Animation>().Play();
                 bombAudio.Play();
                 bombReady = true;
-                SetBombReadyText(true);
+                if (bombBeingUsed)
+                {
+                    GainBomb();
+                } else
+                {
+                    SetBombReadyText(true);
+                }
                 //Debug.Log("Bomb Ready");
             }
         } 
@@ -182,6 +196,53 @@ public class PlayerShooting : MonoBehaviour
         }
         
     }
+
+    // BOMB TEXT BEHAVIOR
+
+    private Coroutine bombCoroutine;
+    private bool RUNNING;
+
+    public void GainBomb()
+    {
+        if (IsInvoking("clearBombText"))
+        {
+            CancelInvoke("clearBombText");
+        }
+        bombText.text = "READY (7)";
+        bombText.color = Color.green;
+
+        if (CR_RUNNING)
+        {
+            //StopCoroutine(bombCoroutine);
+            return;
+        }
+        bombCoroutine = StartCoroutine(BombCoroutine());
+
+    }
+
+    IEnumerator BombCoroutine()
+    {
+        RUNNING = true;
+        yield return new WaitForSeconds(1);
+        for (int i = 6; i > 0; i--)
+        {
+            if (IsInvoking("clearBombText"))
+            {
+                CancelInvoke("clearBombText");
+            }
+            bombText.text = "READY (" + i + ")";
+            yield return new WaitForSeconds(1);
+        }
+        clearBombText();
+        RUNNING = false;
+    }
+
+    void clearBombText()
+    {
+        SetBombReadyText(true);
+    }
+
+    // RAPIDFIRE TEXT BEHAVIOR
 
     private Coroutine rapidfireCoroutine;
     private bool CR_RUNNING;
