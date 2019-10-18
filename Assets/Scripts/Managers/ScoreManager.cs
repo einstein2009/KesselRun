@@ -4,9 +4,12 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static float score;
+    public static float realScore;
+    public static int score;
     public PlayerHealth playerHealth;
+    public int warpingMultiplier;
 
+    private GameObject player;
     Text text;
 
     void Awake()
@@ -14,18 +17,27 @@ public class ScoreManager : MonoBehaviour
         text = GetComponent<Text>();
         score = 0;
         //DontDestroyOnLoad(this);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
     void Update()
     {
+        if (player.GetComponent<PlayerMovement>().warping)
+        {
+            warpingMultiplier = 5;
+        } else
+        {
+            warpingMultiplier = 1;
+        }
 
         if (playerHealth.currentHealth > 0)
         {
-            score += Time.deltaTime;
-            text.text = score.ToString("F2") + " Light Years";
+            realScore += Time.deltaTime * player.GetComponent<PlayerMovement>().speed * warpingMultiplier;
+            score = (int)realScore;
+            text.text = score.ToString("##,#") + " Light Years";
 
-            PlayerPrefs.SetFloat("Score", score);
+            PlayerPrefs.SetInt("Score", score);
         }
 
     }

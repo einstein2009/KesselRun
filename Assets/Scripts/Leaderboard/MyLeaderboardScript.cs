@@ -27,7 +27,7 @@ public class MyLeaderboardScript : MonoBehaviour {
 	{
 		dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
         //dl.LoadScores();
-        score = (int)PlayerPrefs.GetFloat("Score") + 1;
+        score = (int)PlayerPrefs.GetInt("Score"); //+ 1;
     }
 
     void DisplayLeaderboardUI()

@@ -15,9 +15,9 @@ public class GameOverScoreSetter : MonoBehaviour
     {
         Cursor.visible = true;
 
-        float temp = PlayerPrefs.GetFloat("Score");
+        int temp = PlayerPrefs.GetInt("Score");
 
-        theScore.text = temp.ToString("F2") + " Light Years";
+        theScore.text = temp.ToString("##,#") + " Light Years";
 
     }
 
