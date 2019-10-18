@@ -27,6 +27,7 @@ public class PlayerShooting : MonoBehaviour
 
     public GameObject WeaponGlow;
     public GameObject BombGlow;
+    public GameObject bombEffect;
 
     void Start()
     {
@@ -99,6 +100,8 @@ public class PlayerShooting : MonoBehaviour
     void TriggerMegabombDestruction()
     {
         bombAftermanAudio.Play();
+        Vector3 relativePos = transform.position;
+        Instantiate(bombEffect, transform.position, transform.rotation);
         LowerAudioSources();
         Invoke("ResetAudioSources", 4);
         bombReady = false;
