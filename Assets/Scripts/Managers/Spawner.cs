@@ -44,8 +44,10 @@ public class Spawner : MonoBehaviour
 
     void IncreaseSpawnRate()
     {
-        if (spawnRate > 0.24f)
+        if (spawnRate > 0.25f)
             spawnRate -= 0.06f; //* player.GetComponent<PlayerMovement>().speedIncreaseCount;
+        else
+            spawnRate = 0.24f;
     }
 
 

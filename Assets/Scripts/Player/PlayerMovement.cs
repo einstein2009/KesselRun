@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private bool movingTop = false;
     private bool falling = false;
-    private bool warping = false;
+    public bool warping = false;
     private bool skyboxChanged = false;
     private float horizontalAxisValue;
     private float warpElapsed;
@@ -55,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // AUTOMATIC MOVING BEHAVIOR
-        if (!falling)
+        if (warping)
+        {
+            TimeWarp();
+        } else if (!falling)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World); //Keep Moving Forward
         } else
@@ -230,9 +233,11 @@ public class PlayerMovement : MonoBehaviour
         if (warpElapsed < 1f) // first second
         {
             Camera.main.fieldOfView += 150 * Time.deltaTime; // camera zoom out
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * 50, Space.World);
         }
         else // second second
         {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
             if (Camera.main.fieldOfView > 60)
             {
                 Camera.main.fieldOfView -= 150 * Time.deltaTime; // zoom back in
